@@ -1,4 +1,4 @@
-# Sistema_Judocas
+# Sistema Judocas
 
 Sistema de controle de uma academia de Judo
 
@@ -23,3 +23,7 @@ Sistema de controle de uma academia de Judo
 `python manage.py makemigrations` \
 `python manage.py migrate` \
 `python manage.py runserver`
+
+## How to Update Requirements.txt file
+
+`pip freeze > requirements.txt`
