@@ -20,4 +20,5 @@ urlpatterns = [
     re_path('admin/', admin.site.urls),
     re_path('register/', include('register.urls')),
     re_path('home/', include('home.urls')),
+    re_path('', include('home.urls')),
 ]
