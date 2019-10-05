@@ -24,9 +24,9 @@ class User(models.Model):
     primary_phone = models.CharField(max_length=100, db_column='primary_phone')
     alternative_phone = models.CharField(max_length=100, null=False, db_column='alternative_phone')
     email = models.EmailField(unique=True, db_column='email')
-    cpf = models.IntegerField(editable=False, max_length=11, db_column='cpf_number')
-    notes = models.CharField(max_length=1000, db_column='notes')
-    rg = models.IntegerField(editable=False)
+    cpf = models.IntegerField(max_length=11, db_column='cpf_number')
+    notes = models.CharField(max_length=1000, db_column='notes', null=True)
+    rg = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
 
@@ -50,7 +50,7 @@ class UserProfile(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
@@ -88,7 +88,7 @@ class StudentManager(models.Manager):
         Este Método Filtra o modelo base
         :return: Objeto QuerySet
         """
-        return super().get_queryset().filter(profile_id__exact=1)
+        return super().get_queryset().filter(profile_id__exact=2)
 
 
 class Student(UserProfile):
@@ -118,7 +118,7 @@ class TeacherManager(models.Manager):
         Este Método Filtra o modelo base
         :return: Objeto QuerySet
         """
-        return super().get_queryset().filter(profile_id__exact=2)
+        return super().get_queryset().filter(profile_id__exact=1)
 
 
 class Teacher(UserProfile):
