@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    re_path(r"^$", views.StudentAPI.as_view(), name='student_api'),
+    re_path(r"^$", views.HomeView.as_view(), name='home'),
 
 ]
