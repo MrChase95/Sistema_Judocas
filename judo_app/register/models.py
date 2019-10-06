@@ -1,5 +1,6 @@
 # coding=utf-8
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 
@@ -9,25 +10,30 @@ class Category(models.Model):
     """
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, db_column='category_name')
-    order = models.PositiveIntegerField(
-        unique=True, db_column='category_order')
+    order = models.PositiveIntegerField(db_column='category_order')
     color = models.CharField(max_length=6, db_column='category_color')
     description = models.CharField(
         max_length=256, db_column='category_description')
 
+    class Meta:
+        db_table = 'tb_register_category_catalog'
 
-class User(models.Model):
+
+class User(AbstractUser):
     """
         Esta Classe define um usuario dentro do sistema
     """
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, blank=False, db_column='user_name')
+    first_name = models.CharField(
+        max_length=100, blank=False, db_column='user_first_name')
+    last_name = models.CharField(
+        max_length=100, blank=False, db_column='user_last_name')
     cbj_id = models.CharField(max_length=100, db_column='cbj_id')
     primary_phone = models.CharField(max_length=100, db_column='primary_phone')
     alternative_phone = models.CharField(
         max_length=100, null=False, db_column='alternative_phone')
     email = models.EmailField(unique=True, db_column='email')
-    cpf = models.IntegerField(max_length=11, db_column='cpf_number')
+    cpf = models.IntegerField(db_column='cpf_number')
     notes = models.CharField(max_length=1000, db_column='notes', null=True)
     rg = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -35,6 +41,9 @@ class User(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        db_table = 'tb_register_user'
 
 
 class Profile(models.Model):
@@ -52,6 +61,9 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        db_table = 'tb_register_profile_catalog'
+
 
 class UserProfile(models.Model):
     """
@@ -65,6 +77,9 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.name
 
+    class Meta:
+        db_table = 'tb_register_user_x_profile'
+
 
 class Dojo(models.Model):
     id = models.AutoField(primary_key=True)
@@ -74,6 +89,9 @@ class Dojo(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        db_table = 'tb_register_dojo'
 
 
 class Class(models.Model):
@@ -92,6 +110,9 @@ class Class(models.Model):
                              related_name="%(app_label)s_%(class)s_dojo",
                              related_query_name="%(app_label)s_%(class)ss",
                              )
+
+    class Meta:
+        db_table = 'tb_register_class'
 
 
 class StudentManager(models.Manager):

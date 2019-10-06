@@ -1,0 +1,18 @@
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'BRANCA', 1, '#FFFFFF', 'Faixa Branca');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'CINZA', 2, '#9E9E9E', 'Faixa Cinza');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'AZUL', 3, '#0000FF', 'Faixa Azul');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'AMARELA', 4, '#FFFF00', 'Faixa Amarela');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'LARANJA', 5, '#FF7F00', 'Faixa Laranja');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'VERDE', 6, '#00FF00', 'Faixa Verde');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'ROXA', 7, '#FF00FF', 'Faixa Roxa');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'MARROM', 8, '#5E2D00', 'Faixa Marrom');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'PRETA1DAN', 9, '#000000', 'Faixa Preta 1º Dan');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'PRETA2DAN', 10, '#000000', 'Faixa Preta 2º Dan');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'PRETA3DAN', 11, '#000000', 'Faixa Preta 3º Dan');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'PRETA4DAN', 12, '#000000', 'Faixa Preta 4º Dan');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'PRETA5DAN', 13, '#000000', 'Faixa Preta 5º Dan');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'CORAL6DAN', 14, '#FF7F50', 'Faixa Coral 6º Dan');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'CORAL7DAN', 15, '#FF7F50', 'Faixa Coral 7º Dan');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'VERMELHA8DAN', 16, '#FF0000', 'Faixa Vermelha 8º Dan');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'VERMELHA9DAN', 17, '#FF0000', 'Faixa Vermelha 9º Dan');
+INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'VERMELHA10DAN', 18, '#FF0000', 'Faixa Vermelha 10º Dan');

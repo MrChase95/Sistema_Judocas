@@ -1,0 +1,2 @@
+INSERT INTO tb_register_profile_catalog (id, profile_name, created_at, is_active) VALUES (1, 'Teacher', '1570231790777', 1);
+INSERT INTO tb_register_profile_catalog (id, profile_name, created_at, is_active) VALUES (2, 'Student', '1570231899816', 1);
