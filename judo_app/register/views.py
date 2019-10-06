@@ -1,7 +1,7 @@
 from rest_framework import generics, serializers
 from .serializers import (StudentSerializer, UserSerializer,
-                            TeacherSerializer, UserProfileSerializer,
-                            ClassSerializer)
+                          TeacherSerializer, UserProfileSerializer,
+                          ClassSerializer)
 
 # Create your views here.
 
@@ -19,6 +19,7 @@ class StudentAPI(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_update(self, serializer):
         print(serializer.validated_data)
+        serializer.save()
 
 
 class TeacherAPI(generics.RetrieveUpdateDestroyAPIView):
@@ -34,6 +35,7 @@ class TeacherAPI(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_update(self, serializer):
         print(serializer.validated_data)
+        serializer.save()
 
 
 class UserProfileAPI(generics.RetrieveUpdateDestroyAPIView):
@@ -49,6 +51,7 @@ class UserProfileAPI(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_update(self, serializer):
         print(serializer.validated_data)
+        serializer.save()
 
 
 class UserAPI(generics.RetrieveUpdateDestroyAPIView):
@@ -64,6 +67,7 @@ class UserAPI(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_update(self, serializer):
         print(serializer.validated_data)
+        serializer.save()
 
 
 class ClassAPI(generics.RetrieveUpdateDestroyAPIView):
@@ -79,6 +83,7 @@ class ClassAPI(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_update(self, serializer):
         print(serializer.validated_data)
+        serializer.save()
 
 
 class UserListAPI(generics.ListCreateAPIView):

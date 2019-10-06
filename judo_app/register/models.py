@@ -9,9 +9,11 @@ class Category(models.Model):
     """
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, db_column='category_name')
-    order = models.PositiveIntegerField(unique=True, db_column='category_order')
+    order = models.PositiveIntegerField(
+        unique=True, db_column='category_order')
     color = models.CharField(max_length=6, db_column='category_color')
-    description = models.CharField(max_length=256, db_column='category_description')
+    description = models.CharField(
+        max_length=256, db_column='category_description')
 
 
 class User(models.Model):
@@ -22,7 +24,8 @@ class User(models.Model):
     name = models.CharField(max_length=100, blank=False, db_column='user_name')
     cbj_id = models.CharField(max_length=100, db_column='cbj_id')
     primary_phone = models.CharField(max_length=100, db_column='primary_phone')
-    alternative_phone = models.CharField(max_length=100, null=False, db_column='alternative_phone')
+    alternative_phone = models.CharField(
+        max_length=100, null=False, db_column='alternative_phone')
     email = models.EmailField(unique=True, db_column='email')
     cpf = models.IntegerField(max_length=11, db_column='cpf_number')
     notes = models.CharField(max_length=1000, db_column='notes', null=True)
@@ -83,6 +86,7 @@ class StudentManager(models.Manager):
     """
         Controlador de Buscas a Base filtrado por Alunos
     """
+
     def get_queryset(self):
         """
         Este Método Filtra o modelo base
@@ -113,6 +117,7 @@ class TeacherManager(models.Manager):
     """
         Controlador de Buscas a Base filtrado por Professores
     """
+
     def get_queryset(self):
         """
         Este Método Filtra o modelo base
@@ -137,4 +142,3 @@ class Teacher(UserProfile):
 
     class Meta:
         proxy = True
-

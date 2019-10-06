@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Sistema de Judocas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'pages/style.css' %}">
+  </head>
+  <body>
+    <div id="banner">
+      <h1>Sistema Judocas</h1>
+      <nav id="menu">
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="#">Torneio</a></li>
+          <li><a href="{% url 'news-list' %}">Notícias</a></li>
+          <li><a href="/admin/">Admin</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    {% block content %}
+    
+    {% endblock %}
+    
+    <br>
+    <hr>
+    <div class="stopfloat"></div>
+    <div id="footer">
+      <p>Matheus Pedro Rodrigues Ferreira TIA: 31702351</p>
+      <p>João Pedro da Silva Sousa TIA: 31725163</p>
+      <p>Rodrigo Costa TIA: 31711030</p>
+      <p>Lucas Keiti TIA: 31755501</p>
+      <p>Matheus Henrique Ferreira TIA:</p>
+    </div>
+  </body>
+</html>
