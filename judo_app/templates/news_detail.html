@@ -10,7 +10,7 @@
         <h3>{{news.title}}</h3>
         <p>{{ news.text|linebreaksbr }}</p>
         {% if user.is_authenticated %}
-            <a href="{% url 'news-edit' pk=news.pk %}">Editar Esta Noticia</a>
+            <a href="{% url 'news-edit' pk=news.pk %}">Editar Esta Noticia<span class="glyphicon glyphicon-pencil"></span></a>
         {% endif %}
     </div>
 {% endblock %}
