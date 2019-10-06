@@ -1,0 +1,1868 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /register/student/{id}/:
+    get:
+      operationId: RetrieveStudent
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this student.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
+    put:
+      operationId: UpdateStudent
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this student.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: integer
+                profile:
+                  type: integer
+                category:
+                  type: integer
+                  nullable: true
+              required:
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
+    patch:
+      operationId: PartialUpdateStudent
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this student.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: integer
+                profile:
+                  type: integer
+                category:
+                  type: integer
+                  nullable: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
+    delete:
+      operationId: DestroyStudent
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this student.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /register/user/{id}/:
+    get:
+      operationId: RetrieveUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  password:
+                    type: string
+                    maxLength: 128
+                  last_login:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  is_superuser:
+                    type: boolean
+                    description: Designates that this user has all permissions without
+                      explicitly assigning them.
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  is_staff:
+                    type: boolean
+                    description: Designates whether the user can log into this admin
+                      site.
+                  date_joined:
+                    type: string
+                    format: date-time
+                  first_name:
+                    type: string
+                    maxLength: 100
+                  last_name:
+                    type: string
+                    maxLength: 100
+                  cbj_id:
+                    type: string
+                    maxLength: 100
+                  primary_phone:
+                    type: string
+                    maxLength: 100
+                  alternative_phone:
+                    type: string
+                    maxLength: 100
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  cpf:
+                    type: integer
+                  notes:
+                    type: string
+                    nullable: true
+                    maxLength: 1000
+                  rg:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  is_active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: integer
+                    description: The groups this user belongs to. A user will get
+                      all permissions granted to each of their groups.
+                  user_permissions:
+                    type: array
+                    items:
+                      type: integer
+                    description: Specific permissions for this user.
+                required:
+                - password
+                - username
+                - first_name
+                - last_name
+                - cbj_id
+                - primary_phone
+                - alternative_phone
+                - email
+                - cpf
+                - rg
+          description: ''
+    put:
+      operationId: UpdateUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  type: string
+                  maxLength: 128
+                last_login:
+                  type: string
+                  format: date-time
+                  nullable: true
+                is_superuser:
+                  type: boolean
+                  description: Designates that this user has all permissions without
+                    explicitly assigning them.
+                username:
+                  type: string
+                  description: Required. 150 characters or fewer. Letters, digits
+                    and @/./+/-/_ only.
+                  pattern: ^[\w.@+-]+$
+                  maxLength: 150
+                is_staff:
+                  type: boolean
+                  description: Designates whether the user can log into this admin
+                    site.
+                date_joined:
+                  type: string
+                  format: date-time
+                first_name:
+                  type: string
+                  maxLength: 100
+                last_name:
+                  type: string
+                  maxLength: 100
+                cbj_id:
+                  type: string
+                  maxLength: 100
+                primary_phone:
+                  type: string
+                  maxLength: 100
+                alternative_phone:
+                  type: string
+                  maxLength: 100
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                cpf:
+                  type: integer
+                notes:
+                  type: string
+                  nullable: true
+                  maxLength: 1000
+                rg:
+                  type: integer
+                is_active:
+                  type: boolean
+                groups:
+                  type: array
+                  items:
+                    type: integer
+                  description: The groups this user belongs to. A user will get all
+                    permissions granted to each of their groups.
+                user_permissions:
+                  type: array
+                  items:
+                    type: integer
+                  description: Specific permissions for this user.
+              required:
+              - password
+              - username
+              - first_name
+              - last_name
+              - cbj_id
+              - primary_phone
+              - alternative_phone
+              - email
+              - cpf
+              - rg
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  password:
+                    type: string
+                    maxLength: 128
+                  last_login:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  is_superuser:
+                    type: boolean
+                    description: Designates that this user has all permissions without
+                      explicitly assigning them.
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  is_staff:
+                    type: boolean
+                    description: Designates whether the user can log into this admin
+                      site.
+                  date_joined:
+                    type: string
+                    format: date-time
+                  first_name:
+                    type: string
+                    maxLength: 100
+                  last_name:
+                    type: string
+                    maxLength: 100
+                  cbj_id:
+                    type: string
+                    maxLength: 100
+                  primary_phone:
+                    type: string
+                    maxLength: 100
+                  alternative_phone:
+                    type: string
+                    maxLength: 100
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  cpf:
+                    type: integer
+                  notes:
+                    type: string
+                    nullable: true
+                    maxLength: 1000
+                  rg:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  is_active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: integer
+                    description: The groups this user belongs to. A user will get
+                      all permissions granted to each of their groups.
+                  user_permissions:
+                    type: array
+                    items:
+                      type: integer
+                    description: Specific permissions for this user.
+                required:
+                - password
+                - username
+                - first_name
+                - last_name
+                - cbj_id
+                - primary_phone
+                - alternative_phone
+                - email
+                - cpf
+                - rg
+          description: ''
+    patch:
+      operationId: PartialUpdateUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  type: string
+                  maxLength: 128
+                last_login:
+                  type: string
+                  format: date-time
+                  nullable: true
+                is_superuser:
+                  type: boolean
+                  description: Designates that this user has all permissions without
+                    explicitly assigning them.
+                username:
+                  type: string
+                  description: Required. 150 characters or fewer. Letters, digits
+                    and @/./+/-/_ only.
+                  pattern: ^[\w.@+-]+$
+                  maxLength: 150
+                is_staff:
+                  type: boolean
+                  description: Designates whether the user can log into this admin
+                    site.
+                date_joined:
+                  type: string
+                  format: date-time
+                first_name:
+                  type: string
+                  maxLength: 100
+                last_name:
+                  type: string
+                  maxLength: 100
+                cbj_id:
+                  type: string
+                  maxLength: 100
+                primary_phone:
+                  type: string
+                  maxLength: 100
+                alternative_phone:
+                  type: string
+                  maxLength: 100
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                cpf:
+                  type: integer
+                notes:
+                  type: string
+                  nullable: true
+                  maxLength: 1000
+                rg:
+                  type: integer
+                is_active:
+                  type: boolean
+                groups:
+                  type: array
+                  items:
+                    type: integer
+                  description: The groups this user belongs to. A user will get all
+                    permissions granted to each of their groups.
+                user_permissions:
+                  type: array
+                  items:
+                    type: integer
+                  description: Specific permissions for this user.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  password:
+                    type: string
+                    maxLength: 128
+                  last_login:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  is_superuser:
+                    type: boolean
+                    description: Designates that this user has all permissions without
+                      explicitly assigning them.
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  is_staff:
+                    type: boolean
+                    description: Designates whether the user can log into this admin
+                      site.
+                  date_joined:
+                    type: string
+                    format: date-time
+                  first_name:
+                    type: string
+                    maxLength: 100
+                  last_name:
+                    type: string
+                    maxLength: 100
+                  cbj_id:
+                    type: string
+                    maxLength: 100
+                  primary_phone:
+                    type: string
+                    maxLength: 100
+                  alternative_phone:
+                    type: string
+                    maxLength: 100
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  cpf:
+                    type: integer
+                  notes:
+                    type: string
+                    nullable: true
+                    maxLength: 1000
+                  rg:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  is_active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: integer
+                    description: The groups this user belongs to. A user will get
+                      all permissions granted to each of their groups.
+                  user_permissions:
+                    type: array
+                    items:
+                      type: integer
+                    description: Specific permissions for this user.
+                required:
+                - password
+                - username
+                - first_name
+                - last_name
+                - cbj_id
+                - primary_phone
+                - alternative_phone
+                - email
+                - cpf
+                - rg
+          description: ''
+    delete:
+      operationId: DestroyUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /register/userprofile/{id}/:
+    get:
+      operationId: RetrieveUserProfile
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user profile.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
+    put:
+      operationId: UpdateUserProfile
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user profile.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: integer
+                profile:
+                  type: integer
+                category:
+                  type: integer
+                  nullable: true
+              required:
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
+    patch:
+      operationId: PartialUpdateUserProfile
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user profile.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: integer
+                profile:
+                  type: integer
+                category:
+                  type: integer
+                  nullable: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
+    delete:
+      operationId: DestroyUserProfile
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user profile.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /register/teacher/{id}/:
+    get:
+      operationId: RetrieveUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  password:
+                    type: string
+                    maxLength: 128
+                  last_login:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  is_superuser:
+                    type: boolean
+                    description: Designates that this user has all permissions without
+                      explicitly assigning them.
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  is_staff:
+                    type: boolean
+                    description: Designates whether the user can log into this admin
+                      site.
+                  date_joined:
+                    type: string
+                    format: date-time
+                  first_name:
+                    type: string
+                    maxLength: 100
+                  last_name:
+                    type: string
+                    maxLength: 100
+                  cbj_id:
+                    type: string
+                    maxLength: 100
+                  primary_phone:
+                    type: string
+                    maxLength: 100
+                  alternative_phone:
+                    type: string
+                    maxLength: 100
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  cpf:
+                    type: integer
+                  notes:
+                    type: string
+                    nullable: true
+                    maxLength: 1000
+                  rg:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  is_active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: integer
+                    description: The groups this user belongs to. A user will get
+                      all permissions granted to each of their groups.
+                  user_permissions:
+                    type: array
+                    items:
+                      type: integer
+                    description: Specific permissions for this user.
+                required:
+                - password
+                - username
+                - first_name
+                - last_name
+                - cbj_id
+                - primary_phone
+                - alternative_phone
+                - email
+                - cpf
+                - rg
+          description: ''
+    put:
+      operationId: UpdateUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  type: string
+                  maxLength: 128
+                last_login:
+                  type: string
+                  format: date-time
+                  nullable: true
+                is_superuser:
+                  type: boolean
+                  description: Designates that this user has all permissions without
+                    explicitly assigning them.
+                username:
+                  type: string
+                  description: Required. 150 characters or fewer. Letters, digits
+                    and @/./+/-/_ only.
+                  pattern: ^[\w.@+-]+$
+                  maxLength: 150
+                is_staff:
+                  type: boolean
+                  description: Designates whether the user can log into this admin
+                    site.
+                date_joined:
+                  type: string
+                  format: date-time
+                first_name:
+                  type: string
+                  maxLength: 100
+                last_name:
+                  type: string
+                  maxLength: 100
+                cbj_id:
+                  type: string
+                  maxLength: 100
+                primary_phone:
+                  type: string
+                  maxLength: 100
+                alternative_phone:
+                  type: string
+                  maxLength: 100
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                cpf:
+                  type: integer
+                notes:
+                  type: string
+                  nullable: true
+                  maxLength: 1000
+                rg:
+                  type: integer
+                is_active:
+                  type: boolean
+                groups:
+                  type: array
+                  items:
+                    type: integer
+                  description: The groups this user belongs to. A user will get all
+                    permissions granted to each of their groups.
+                user_permissions:
+                  type: array
+                  items:
+                    type: integer
+                  description: Specific permissions for this user.
+              required:
+              - password
+              - username
+              - first_name
+              - last_name
+              - cbj_id
+              - primary_phone
+              - alternative_phone
+              - email
+              - cpf
+              - rg
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  password:
+                    type: string
+                    maxLength: 128
+                  last_login:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  is_superuser:
+                    type: boolean
+                    description: Designates that this user has all permissions without
+                      explicitly assigning them.
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  is_staff:
+                    type: boolean
+                    description: Designates whether the user can log into this admin
+                      site.
+                  date_joined:
+                    type: string
+                    format: date-time
+                  first_name:
+                    type: string
+                    maxLength: 100
+                  last_name:
+                    type: string
+                    maxLength: 100
+                  cbj_id:
+                    type: string
+                    maxLength: 100
+                  primary_phone:
+                    type: string
+                    maxLength: 100
+                  alternative_phone:
+                    type: string
+                    maxLength: 100
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  cpf:
+                    type: integer
+                  notes:
+                    type: string
+                    nullable: true
+                    maxLength: 1000
+                  rg:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  is_active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: integer
+                    description: The groups this user belongs to. A user will get
+                      all permissions granted to each of their groups.
+                  user_permissions:
+                    type: array
+                    items:
+                      type: integer
+                    description: Specific permissions for this user.
+                required:
+                - password
+                - username
+                - first_name
+                - last_name
+                - cbj_id
+                - primary_phone
+                - alternative_phone
+                - email
+                - cpf
+                - rg
+          description: ''
+    patch:
+      operationId: PartialUpdateUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  type: string
+                  maxLength: 128
+                last_login:
+                  type: string
+                  format: date-time
+                  nullable: true
+                is_superuser:
+                  type: boolean
+                  description: Designates that this user has all permissions without
+                    explicitly assigning them.
+                username:
+                  type: string
+                  description: Required. 150 characters or fewer. Letters, digits
+                    and @/./+/-/_ only.
+                  pattern: ^[\w.@+-]+$
+                  maxLength: 150
+                is_staff:
+                  type: boolean
+                  description: Designates whether the user can log into this admin
+                    site.
+                date_joined:
+                  type: string
+                  format: date-time
+                first_name:
+                  type: string
+                  maxLength: 100
+                last_name:
+                  type: string
+                  maxLength: 100
+                cbj_id:
+                  type: string
+                  maxLength: 100
+                primary_phone:
+                  type: string
+                  maxLength: 100
+                alternative_phone:
+                  type: string
+                  maxLength: 100
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                cpf:
+                  type: integer
+                notes:
+                  type: string
+                  nullable: true
+                  maxLength: 1000
+                rg:
+                  type: integer
+                is_active:
+                  type: boolean
+                groups:
+                  type: array
+                  items:
+                    type: integer
+                  description: The groups this user belongs to. A user will get all
+                    permissions granted to each of their groups.
+                user_permissions:
+                  type: array
+                  items:
+                    type: integer
+                  description: Specific permissions for this user.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  password:
+                    type: string
+                    maxLength: 128
+                  last_login:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  is_superuser:
+                    type: boolean
+                    description: Designates that this user has all permissions without
+                      explicitly assigning them.
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  is_staff:
+                    type: boolean
+                    description: Designates whether the user can log into this admin
+                      site.
+                  date_joined:
+                    type: string
+                    format: date-time
+                  first_name:
+                    type: string
+                    maxLength: 100
+                  last_name:
+                    type: string
+                    maxLength: 100
+                  cbj_id:
+                    type: string
+                    maxLength: 100
+                  primary_phone:
+                    type: string
+                    maxLength: 100
+                  alternative_phone:
+                    type: string
+                    maxLength: 100
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  cpf:
+                    type: integer
+                  notes:
+                    type: string
+                    nullable: true
+                    maxLength: 1000
+                  rg:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  is_active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: integer
+                    description: The groups this user belongs to. A user will get
+                      all permissions granted to each of their groups.
+                  user_permissions:
+                    type: array
+                    items:
+                      type: integer
+                    description: Specific permissions for this user.
+                required:
+                - password
+                - username
+                - first_name
+                - last_name
+                - cbj_id
+                - primary_phone
+                - alternative_phone
+                - email
+                - cpf
+                - rg
+          description: ''
+    delete:
+      operationId: DestroyUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /register/class/{id}/:
+    get:
+      operationId: RetrieveClass
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this class.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  teacher:
+                    type: integer
+                  student:
+                    type: integer
+                  dojo:
+                    type: integer
+                required:
+                - teacher
+                - student
+                - dojo
+          description: ''
+    put:
+      operationId: UpdateClass
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this class.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                teacher:
+                  type: integer
+                student:
+                  type: integer
+                dojo:
+                  type: integer
+              required:
+              - teacher
+              - student
+              - dojo
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  teacher:
+                    type: integer
+                  student:
+                    type: integer
+                  dojo:
+                    type: integer
+                required:
+                - teacher
+                - student
+                - dojo
+          description: ''
+    patch:
+      operationId: PartialUpdateClass
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this class.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                teacher:
+                  type: integer
+                student:
+                  type: integer
+                dojo:
+                  type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  teacher:
+                    type: integer
+                  student:
+                    type: integer
+                  dojo:
+                    type: integer
+                required:
+                - teacher
+                - student
+                - dojo
+          description: ''
+    delete:
+      operationId: DestroyClass
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this class.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /register/user_list/:
+    get:
+      operationId: listUsers
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    password:
+                      type: string
+                      maxLength: 128
+                    last_login:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    is_superuser:
+                      type: boolean
+                      description: Designates that this user has all permissions without
+                        explicitly assigning them.
+                    username:
+                      type: string
+                      description: Required. 150 characters or fewer. Letters, digits
+                        and @/./+/-/_ only.
+                      pattern: ^[\w.@+-]+$
+                      maxLength: 150
+                    is_staff:
+                      type: boolean
+                      description: Designates whether the user can log into this admin
+                        site.
+                    date_joined:
+                      type: string
+                      format: date-time
+                    first_name:
+                      type: string
+                      maxLength: 100
+                    last_name:
+                      type: string
+                      maxLength: 100
+                    cbj_id:
+                      type: string
+                      maxLength: 100
+                    primary_phone:
+                      type: string
+                      maxLength: 100
+                    alternative_phone:
+                      type: string
+                      maxLength: 100
+                    email:
+                      type: string
+                      format: email
+                      maxLength: 254
+                    cpf:
+                      type: integer
+                    notes:
+                      type: string
+                      nullable: true
+                      maxLength: 1000
+                    rg:
+                      type: integer
+                    created_at:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    is_active:
+                      type: boolean
+                    groups:
+                      type: array
+                      items:
+                        type: integer
+                      description: The groups this user belongs to. A user will get
+                        all permissions granted to each of their groups.
+                    user_permissions:
+                      type: array
+                      items:
+                        type: integer
+                      description: Specific permissions for this user.
+                  required:
+                  - password
+                  - username
+                  - first_name
+                  - last_name
+                  - cbj_id
+                  - primary_phone
+                  - alternative_phone
+                  - email
+                  - cpf
+                  - rg
+          description: ''
+    post:
+      operationId: CreateUser
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  type: string
+                  maxLength: 128
+                last_login:
+                  type: string
+                  format: date-time
+                  nullable: true
+                is_superuser:
+                  type: boolean
+                  description: Designates that this user has all permissions without
+                    explicitly assigning them.
+                username:
+                  type: string
+                  description: Required. 150 characters or fewer. Letters, digits
+                    and @/./+/-/_ only.
+                  pattern: ^[\w.@+-]+$
+                  maxLength: 150
+                is_staff:
+                  type: boolean
+                  description: Designates whether the user can log into this admin
+                    site.
+                date_joined:
+                  type: string
+                  format: date-time
+                first_name:
+                  type: string
+                  maxLength: 100
+                last_name:
+                  type: string
+                  maxLength: 100
+                cbj_id:
+                  type: string
+                  maxLength: 100
+                primary_phone:
+                  type: string
+                  maxLength: 100
+                alternative_phone:
+                  type: string
+                  maxLength: 100
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                cpf:
+                  type: integer
+                notes:
+                  type: string
+                  nullable: true
+                  maxLength: 1000
+                rg:
+                  type: integer
+                is_active:
+                  type: boolean
+                groups:
+                  type: array
+                  items:
+                    type: integer
+                  description: The groups this user belongs to. A user will get all
+                    permissions granted to each of their groups.
+                user_permissions:
+                  type: array
+                  items:
+                    type: integer
+                  description: Specific permissions for this user.
+              required:
+              - password
+              - username
+              - first_name
+              - last_name
+              - cbj_id
+              - primary_phone
+              - alternative_phone
+              - email
+              - cpf
+              - rg
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  password:
+                    type: string
+                    maxLength: 128
+                  last_login:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  is_superuser:
+                    type: boolean
+                    description: Designates that this user has all permissions without
+                      explicitly assigning them.
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  is_staff:
+                    type: boolean
+                    description: Designates whether the user can log into this admin
+                      site.
+                  date_joined:
+                    type: string
+                    format: date-time
+                  first_name:
+                    type: string
+                    maxLength: 100
+                  last_name:
+                    type: string
+                    maxLength: 100
+                  cbj_id:
+                    type: string
+                    maxLength: 100
+                  primary_phone:
+                    type: string
+                    maxLength: 100
+                  alternative_phone:
+                    type: string
+                    maxLength: 100
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  cpf:
+                    type: integer
+                  notes:
+                    type: string
+                    nullable: true
+                    maxLength: 1000
+                  rg:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  is_active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: integer
+                    description: The groups this user belongs to. A user will get
+                      all permissions granted to each of their groups.
+                  user_permissions:
+                    type: array
+                    items:
+                      type: integer
+                    description: Specific permissions for this user.
+                required:
+                - password
+                - username
+                - first_name
+                - last_name
+                - cbj_id
+                - primary_phone
+                - alternative_phone
+                - email
+                - cpf
+                - rg
+          description: ''
+  /register/student_list/:
+    get:
+      operationId: listStudents
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    created_at:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    user:
+                      type: integer
+                    profile:
+                      type: integer
+                    category:
+                      type: integer
+                      nullable: true
+                  required:
+                  - user
+                  - profile
+          description: ''
+    post:
+      operationId: CreateStudent
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: integer
+                profile:
+                  type: integer
+                category:
+                  type: integer
+                  nullable: true
+              required:
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
+  /register/userprofile_list/:
+    get:
+      operationId: listUserProfiles
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    created_at:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    user:
+                      type: integer
+                    profile:
+                      type: integer
+                    category:
+                      type: integer
+                      nullable: true
+                  required:
+                  - user
+                  - profile
+          description: ''
+    post:
+      operationId: CreateUserProfile
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: integer
+                profile:
+                  type: integer
+                category:
+                  type: integer
+                  nullable: true
+              required:
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
+  /register/teacher_list/:
+    get:
+      operationId: listTeachers
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    created_at:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    user:
+                      type: integer
+                    profile:
+                      type: integer
+                    category:
+                      type: integer
+                      nullable: true
+                  required:
+                  - user
+                  - profile
+          description: ''
+    post:
+      operationId: CreateTeacher
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: integer
+                profile:
+                  type: integer
+                category:
+                  type: integer
+                  nullable: true
+              required:
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
+  /register/class_list/:
+    get:
+      operationId: listClass
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    teacher:
+                      type: integer
+                    student:
+                      type: integer
+                    dojo:
+                      type: integer
+                  required:
+                  - teacher
+                  - student
+                  - dojo
+          description: ''
+    post:
+      operationId: CreateClass
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                teacher:
+                  type: integer
+                student:
+                  type: integer
+                dojo:
+                  type: integer
+              required:
+              - teacher
+              - student
+              - dojo
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  teacher:
+                    type: integer
+                  student:
+                    type: integer
+                  dojo:
+                    type: integer
+                required:
+                - teacher
+                - student
+                - dojo
+          description: ''

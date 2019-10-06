@@ -1,5 +1,6 @@
 # coding=utf-8
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 
@@ -17,7 +18,7 @@ class Category(models.Model):
         db_table = 'tb_register_category_catalog'
 
 
-class User(models.Model):
+class User(AbstractUser):
     """
         Esta Classe define um usuario dentro do sistema
     """
