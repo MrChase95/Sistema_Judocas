@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from django.conf import settings
+from register.models import User
 
 # Create your models here.
 
@@ -11,7 +11,7 @@ class News(models.Model):
     """
     id = models.AutoField(primary_key=True)
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, db_column="author_name")
+        User, on_delete=models.CASCADE, db_column="author_name")
     title = models.CharField(max_length=200, db_column="news_name")
     text = models.TextField(db_column="news_content")
     published = models.DateTimeField(

@@ -40,7 +40,7 @@ class User(AbstractUser):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.name
+        return self.first_name
 
     class Meta:
         db_table = 'tb_register_user'
@@ -75,7 +75,7 @@ class UserProfile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.name
+        return self.user.first_name
 
     class Meta:
         db_table = 'tb_register_user_x_profile'
