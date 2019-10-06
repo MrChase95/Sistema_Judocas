@@ -33,6 +33,9 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Profile(models.Model):
     """
@@ -46,6 +49,9 @@ class Profile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.name
+
 
 class UserProfile(models.Model):
     """
@@ -56,12 +62,18 @@ class UserProfile(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.user.name
+
 
 class Dojo(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, db_column='dojo_name')
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Class(models.Model):
