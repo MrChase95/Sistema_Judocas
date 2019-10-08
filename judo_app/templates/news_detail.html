@@ -3,14 +3,14 @@
 {% block content %}
     <div id="news">
         <h3>Detalhes do Post</h1>
+        <hr>
+        <br>
         <p>Publicada em: {{news.published}} - Autor: {{news.author}}</p>
         {% if news.edited %}
             <p>Editada em: {{news.edited}}</p>
         {% endif %}
         <h3>{{news.title}}</h3>
         <p>{{ news.text|linebreaksbr }}</p>
-        {% if user.is_authenticated %}
-            <a href="{% url 'news-edit' pk=news.pk %}">Editar Esta Noticia<span class="glyphicon glyphicon-pencil"></span></a>
-        {% endif %}
+        <a href="{% url 'news-edit' pk=news.pk %}">Editar Esta Noticia<span class="glyphicon glyphicon-pencil"></span></a>
     </div>
 {% endblock %}

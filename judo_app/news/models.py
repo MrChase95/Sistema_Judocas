@@ -10,8 +10,8 @@ class News(models.Model):
         Esta classe define uma noticia dentro do sistema
     """
     id = models.AutoField(primary_key=True)
-    author = models.ForeignKey(
-        User, on_delete=models.CASCADE, db_column="author_name")
+    # author = models.ForeignKey(
+    #     User, on_delete=models.CASCADE, db_column="author_name")
     title = models.CharField(max_length=200, db_column="news_name")
     text = models.TextField(db_column="news_content")
     published = models.DateTimeField(

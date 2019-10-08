@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    {% if user.is_authenticated %}
         <h3><a href="{% url 'news-new' %}" >Nova Noticia <span class="glyphicon glyphicon-plus"></span></a></h3>
-    {% endif %}
     {% for news in news %}
         <hr>
         <p>Publicada em: {{news.published}} - Autor: {{news.author}}</p>

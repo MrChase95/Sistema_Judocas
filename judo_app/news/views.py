@@ -22,7 +22,6 @@ def News_NewView(request, *args, **kwargs):
         if form.is_valid():
             news = form.save(commit=False)
             news.author = request.user
-            news.edited = timezone.now()
             news.save()
             return redirect('news-detail', pk=news.pk)
     else:
