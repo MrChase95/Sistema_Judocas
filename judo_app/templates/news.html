@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+        <h3><a href="{% url 'news-new' %}" >Nova Noticia <span class="glyphicon glyphicon-plus"></span></a></h3>
+    {% for news in news %}
+        <hr>
+        <p>Publicada em: {{news.published}} - Autor: {{news.author}}</p>
+        <h3><a href = "{% url 'news-detail' pk=news.pk %}">{{news.title}}</a></h3>
+        <p>{{ news.text|linebreaksbr }}</p>
+    {% endfor %}
+
+{% endblock %}

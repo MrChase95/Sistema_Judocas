@@ -1,0 +1,39 @@
+#banner {
+  text-align: center;
+  background-size: cover;
+  padding: 90px;
+  color: green;
+  text-shadow: 1px 1px 5px black;
+}
+
+#menu {
+  background-color: #d2d2d2;
+  display: flex;
+  display: -webkit- flex;
+  justify-content: center;
+  justify-content: -webkit- center;
+  margin-bottom: 20px;
+}
+
+#menu ul li {
+  list-style: none;
+  display: inline;
+  padding: 0px 20px;
+  border-right: 1px solid black;
+}
+
+#menu ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 15pt;
+}
+
+#footer {
+  background-color: #d2d2d2;
+}
+
+#footer p {
+  color: black;
+  font-size: 10pt;
+  text-align: center;
+}
