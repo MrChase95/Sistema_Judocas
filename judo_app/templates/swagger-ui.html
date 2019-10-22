@@ -15,10 +15,14 @@
         dom_id: '#swagger-ui',
         presets: [
           SwaggerUIBundle.presets.apis,
-          SwaggerUIBundle.SwaggerUIStandalonePreset
+          SwaggerUIBundle.SwaggerUIStandalonePreset,
+            
         ],
-        layout: "BaseLayout"
-      })
+        layout: "BaseLayout",
+        auth: {
+            csrfCookieName: "csrftoken"
+        }
+      });
     </script>
   </body>
 </html>
