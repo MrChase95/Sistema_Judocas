@@ -26,6 +26,9 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
+    def create(self, validated_data):
+        return self.Meta.model.objects.create_user(**validated_data)
+
     def validate_cpf(self, value):
         digits_weight: List[List[int]] = [
             [10, 9, 8, 7, 6, 5, 4, 3, 2],
