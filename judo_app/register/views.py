@@ -1,9 +1,14 @@
 from rest_framework import generics, serializers
+from django.http.response import HttpResponse
+from django.middleware.csrf import get_token
 from .serializers import (StudentSerializer, UserSerializer,
                           TeacherSerializer, UserProfileSerializer,
                           ClassSerializer)
 
 # Create your views here.
+
+def get_csrf_token(request):
+    return HttpResponse(get_token(request))
 
 
 class StudentAPI(generics.RetrieveUpdateDestroyAPIView):

@@ -13,4 +13,5 @@ urlpatterns = [
     re_path("userprofile_list/", views.UserProfileListAPI.as_view(), name='userprofile_list_api'),
     re_path("teacher_list/", views.TeacherListAPI.as_view(), name='teacher_list_api'),
     re_path("class_list/", views.ClassListAPI.as_view(), name='class_list_api'),
+    re_path("token/", views.get_csrf_token, name='csrf_token'),
 ]
