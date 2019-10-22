@@ -26,12 +26,13 @@ urlpatterns = [
     # path('', include('home.urls')),
     # path('home/', include('home.urls')),
     path('noticias/', include('news.urls')),
+    path('home/', include('django.contrib.auth.urls')),
     re_path('admin/', admin.site.urls),
     re_path('register/', include('register.urls')),
     re_path('home/', include('home.urls')),
     re_path('', include('home.urls')),
     re_path(r'^docs/', include_docs_urls(title='My API title', public=False)),
-    path('openapi/', get_schema_view(
+    re_path(r'^openapi/$', get_schema_view(
         title="Sistema Judocas",
         description="Pagina de Testes das APIs",
         version="1.0.0"

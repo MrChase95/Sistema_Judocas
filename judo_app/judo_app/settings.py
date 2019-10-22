@@ -25,7 +25,7 @@ SECRET_KEY = '%duc($n=1sim4+lj7yk#ja-aievb3msag*@r3v)_ye-#@q63g8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', 'localhost', 'matheus-mackbook-air.local', '172.16.38.234']
 
 
 # Application definition
@@ -56,6 +56,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'judo_app.urls'
 
 AUTH_USER_MODEL = 'register.User'
+
+LOGIN_REDIRECT_URL = '/home'
 
 TEMPLATES = [
     {
