@@ -3,6 +3,78 @@ info:
   title: ''
   version: ''
 paths:
+  /register/student/:
+    get:
+      operationId: listStudents
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    created_at:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    user:
+                      type: integer
+                    profile:
+                      type: integer
+                    category:
+                      type: integer
+                      nullable: true
+                  required:
+                  - user
+                  - profile
+          description: ''
+    post:
+      operationId: CreateStudent
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: integer
+                profile:
+                  type: integer
+                category:
+                  type: integer
+                  nullable: true
+              required:
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
   /register/student/{id}/:
     get:
       operationId: RetrieveStudent
@@ -142,16 +214,187 @@ paths:
       responses:
         '204':
           description: ''
-  /register/user/{id}/:
+  /register/user/:
     get:
-      operationId: RetrieveUser
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this user.
-        schema:
-          type: string
+      operationId: listUsers
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    password:
+                      type: string
+                      maxLength: 128
+                    last_login:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    is_superuser:
+                      type: boolean
+                      description: "Indica que este usu\xE1rio tem todas as permiss\xF5\
+                        es sem atribu\xED-las explicitamente."
+                    username:
+                      type: string
+                      description: "Obrigat\xF3rio. 150 caracteres ou menos. Letras,\
+                        \ n\xFAmeros e @/./+/-/_ apenas."
+                      pattern: ^[\w.@+-]+$
+                      maxLength: 150
+                    is_staff:
+                      type: boolean
+                      description: "Indica que usu\xE1rio consegue acessar este site\
+                        \ de administra\xE7\xE3o."
+                    date_joined:
+                      type: string
+                      format: date-time
+                    first_name:
+                      type: string
+                      maxLength: 100
+                    last_name:
+                      type: string
+                      maxLength: 100
+                    cbj_id:
+                      type: string
+                      maxLength: 100
+                    primary_phone:
+                      type: string
+                      maxLength: 100
+                    alternative_phone:
+                      type: string
+                      maxLength: 100
+                    email:
+                      type: string
+                      format: email
+                      maxLength: 254
+                    cpf:
+                      type: integer
+                    notes:
+                      type: string
+                      nullable: true
+                      maxLength: 1000
+                    rg:
+                      type: integer
+                    created_at:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    is_active:
+                      type: boolean
+                    groups:
+                      type: array
+                      items:
+                        type: integer
+                      description: "Os grupos que este usu\xE1rio pertence. Um usu\xE1\
+                        rio ter\xE1 todas as permiss\xF5es concedidas a cada um dos\
+                        \ seus grupos."
+                    user_permissions:
+                      type: array
+                      items:
+                        type: integer
+                      description: "Permiss\xF5es espec\xEDficas para este usu\xE1\
+                        rio."
+                  required:
+                  - password
+                  - username
+                  - first_name
+                  - last_name
+                  - cbj_id
+                  - primary_phone
+                  - alternative_phone
+                  - email
+                  - cpf
+                  - rg
+          description: ''
+    post:
+      operationId: CreateUser
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  type: string
+                  maxLength: 128
+                last_login:
+                  type: string
+                  format: date-time
+                  nullable: true
+                is_superuser:
+                  type: boolean
+                  description: "Indica que este usu\xE1rio tem todas as permiss\xF5\
+                    es sem atribu\xED-las explicitamente."
+                username:
+                  type: string
+                  description: "Obrigat\xF3rio. 150 caracteres ou menos. Letras, n\xFA\
+                    meros e @/./+/-/_ apenas."
+                  pattern: ^[\w.@+-]+$
+                  maxLength: 150
+                is_staff:
+                  type: boolean
+                  description: "Indica que usu\xE1rio consegue acessar este site de\
+                    \ administra\xE7\xE3o."
+                date_joined:
+                  type: string
+                  format: date-time
+                first_name:
+                  type: string
+                  maxLength: 100
+                last_name:
+                  type: string
+                  maxLength: 100
+                cbj_id:
+                  type: string
+                  maxLength: 100
+                primary_phone:
+                  type: string
+                  maxLength: 100
+                alternative_phone:
+                  type: string
+                  maxLength: 100
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                cpf:
+                  type: integer
+                notes:
+                  type: string
+                  nullable: true
+                  maxLength: 1000
+                rg:
+                  type: integer
+                is_active:
+                  type: boolean
+                groups:
+                  type: array
+                  items:
+                    type: integer
+                  description: "Os grupos que este usu\xE1rio pertence. Um usu\xE1\
+                    rio ter\xE1 todas as permiss\xF5es concedidas a cada um dos seus\
+                    \ grupos."
+                user_permissions:
+                  type: array
+                  items:
+                    type: integer
+                  description: "Permiss\xF5es espec\xEDficas para este usu\xE1rio."
+              required:
+              - password
+              - username
+              - first_name
+              - last_name
+              - cbj_id
+              - primary_phone
+              - alternative_phone
+              - email
+              - cpf
+              - rg
       responses:
         '200':
           content:
@@ -170,18 +413,18 @@ paths:
                     nullable: true
                   is_superuser:
                     type: boolean
-                    description: Designates that this user has all permissions without
-                      explicitly assigning them.
+                    description: "Indica que este usu\xE1rio tem todas as permiss\xF5\
+                      es sem atribu\xED-las explicitamente."
                   username:
                     type: string
-                    description: Required. 150 characters or fewer. Letters, digits
-                      and @/./+/-/_ only.
+                    description: "Obrigat\xF3rio. 150 caracteres ou menos. Letras,\
+                      \ n\xFAmeros e @/./+/-/_ apenas."
                     pattern: ^[\w.@+-]+$
                     maxLength: 150
                   is_staff:
                     type: boolean
-                    description: Designates whether the user can log into this admin
-                      site.
+                    description: "Indica que usu\xE1rio consegue acessar este site\
+                      \ de administra\xE7\xE3o."
                   date_joined:
                     type: string
                     format: date-time
@@ -222,13 +465,114 @@ paths:
                     type: array
                     items:
                       type: integer
-                    description: The groups this user belongs to. A user will get
-                      all permissions granted to each of their groups.
+                    description: "Os grupos que este usu\xE1rio pertence. Um usu\xE1\
+                      rio ter\xE1 todas as permiss\xF5es concedidas a cada um dos\
+                      \ seus grupos."
                   user_permissions:
                     type: array
                     items:
                       type: integer
-                    description: Specific permissions for this user.
+                    description: "Permiss\xF5es espec\xEDficas para este usu\xE1rio."
+                required:
+                - password
+                - username
+                - first_name
+                - last_name
+                - cbj_id
+                - primary_phone
+                - alternative_phone
+                - email
+                - cpf
+                - rg
+          description: ''
+  /register/user/{id}/:
+    get:
+      operationId: RetrieveUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  password:
+                    type: string
+                    maxLength: 128
+                  last_login:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  is_superuser:
+                    type: boolean
+                    description: "Indica que este usu\xE1rio tem todas as permiss\xF5\
+                      es sem atribu\xED-las explicitamente."
+                  username:
+                    type: string
+                    description: "Obrigat\xF3rio. 150 caracteres ou menos. Letras,\
+                      \ n\xFAmeros e @/./+/-/_ apenas."
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  is_staff:
+                    type: boolean
+                    description: "Indica que usu\xE1rio consegue acessar este site\
+                      \ de administra\xE7\xE3o."
+                  date_joined:
+                    type: string
+                    format: date-time
+                  first_name:
+                    type: string
+                    maxLength: 100
+                  last_name:
+                    type: string
+                    maxLength: 100
+                  cbj_id:
+                    type: string
+                    maxLength: 100
+                  primary_phone:
+                    type: string
+                    maxLength: 100
+                  alternative_phone:
+                    type: string
+                    maxLength: 100
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  cpf:
+                    type: integer
+                  notes:
+                    type: string
+                    nullable: true
+                    maxLength: 1000
+                  rg:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  is_active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: integer
+                    description: "Os grupos que este usu\xE1rio pertence. Um usu\xE1\
+                      rio ter\xE1 todas as permiss\xF5es concedidas a cada um dos\
+                      \ seus grupos."
+                  user_permissions:
+                    type: array
+                    items:
+                      type: integer
+                    description: "Permiss\xF5es espec\xEDficas para este usu\xE1rio."
                 required:
                 - password
                 - username
@@ -264,18 +608,18 @@ paths:
                   nullable: true
                 is_superuser:
                   type: boolean
-                  description: Designates that this user has all permissions without
-                    explicitly assigning them.
+                  description: "Indica que este usu\xE1rio tem todas as permiss\xF5\
+                    es sem atribu\xED-las explicitamente."
                 username:
                   type: string
-                  description: Required. 150 characters or fewer. Letters, digits
-                    and @/./+/-/_ only.
+                  description: "Obrigat\xF3rio. 150 caracteres ou menos. Letras, n\xFA\
+                    meros e @/./+/-/_ apenas."
                   pattern: ^[\w.@+-]+$
                   maxLength: 150
                 is_staff:
                   type: boolean
-                  description: Designates whether the user can log into this admin
-                    site.
+                  description: "Indica que usu\xE1rio consegue acessar este site de\
+                    \ administra\xE7\xE3o."
                 date_joined:
                   type: string
                   format: date-time
@@ -312,13 +656,14 @@ paths:
                   type: array
                   items:
                     type: integer
-                  description: The groups this user belongs to. A user will get all
-                    permissions granted to each of their groups.
+                  description: "Os grupos que este usu\xE1rio pertence. Um usu\xE1\
+                    rio ter\xE1 todas as permiss\xF5es concedidas a cada um dos seus\
+                    \ grupos."
                 user_permissions:
                   type: array
                   items:
                     type: integer
-                  description: Specific permissions for this user.
+                  description: "Permiss\xF5es espec\xEDficas para este usu\xE1rio."
               required:
               - password
               - username
@@ -348,18 +693,18 @@ paths:
                     nullable: true
                   is_superuser:
                     type: boolean
-                    description: Designates that this user has all permissions without
-                      explicitly assigning them.
+                    description: "Indica que este usu\xE1rio tem todas as permiss\xF5\
+                      es sem atribu\xED-las explicitamente."
                   username:
                     type: string
-                    description: Required. 150 characters or fewer. Letters, digits
-                      and @/./+/-/_ only.
+                    description: "Obrigat\xF3rio. 150 caracteres ou menos. Letras,\
+                      \ n\xFAmeros e @/./+/-/_ apenas."
                     pattern: ^[\w.@+-]+$
                     maxLength: 150
                   is_staff:
                     type: boolean
-                    description: Designates whether the user can log into this admin
-                      site.
+                    description: "Indica que usu\xE1rio consegue acessar este site\
+                      \ de administra\xE7\xE3o."
                   date_joined:
                     type: string
                     format: date-time
@@ -400,13 +745,14 @@ paths:
                     type: array
                     items:
                       type: integer
-                    description: The groups this user belongs to. A user will get
-                      all permissions granted to each of their groups.
+                    description: "Os grupos que este usu\xE1rio pertence. Um usu\xE1\
+                      rio ter\xE1 todas as permiss\xF5es concedidas a cada um dos\
+                      \ seus grupos."
                   user_permissions:
                     type: array
                     items:
                       type: integer
-                    description: Specific permissions for this user.
+                    description: "Permiss\xF5es espec\xEDficas para este usu\xE1rio."
                 required:
                 - password
                 - username
@@ -442,18 +788,18 @@ paths:
                   nullable: true
                 is_superuser:
                   type: boolean
-                  description: Designates that this user has all permissions without
-                    explicitly assigning them.
+                  description: "Indica que este usu\xE1rio tem todas as permiss\xF5\
+                    es sem atribu\xED-las explicitamente."
                 username:
                   type: string
-                  description: Required. 150 characters or fewer. Letters, digits
-                    and @/./+/-/_ only.
+                  description: "Obrigat\xF3rio. 150 caracteres ou menos. Letras, n\xFA\
+                    meros e @/./+/-/_ apenas."
                   pattern: ^[\w.@+-]+$
                   maxLength: 150
                 is_staff:
                   type: boolean
-                  description: Designates whether the user can log into this admin
-                    site.
+                  description: "Indica que usu\xE1rio consegue acessar este site de\
+                    \ administra\xE7\xE3o."
                 date_joined:
                   type: string
                   format: date-time
@@ -490,13 +836,14 @@ paths:
                   type: array
                   items:
                     type: integer
-                  description: The groups this user belongs to. A user will get all
-                    permissions granted to each of their groups.
+                  description: "Os grupos que este usu\xE1rio pertence. Um usu\xE1\
+                    rio ter\xE1 todas as permiss\xF5es concedidas a cada um dos seus\
+                    \ grupos."
                 user_permissions:
                   type: array
                   items:
                     type: integer
-                  description: Specific permissions for this user.
+                  description: "Permiss\xF5es espec\xEDficas para este usu\xE1rio."
       responses:
         '200':
           content:
@@ -515,18 +862,18 @@ paths:
                     nullable: true
                   is_superuser:
                     type: boolean
-                    description: Designates that this user has all permissions without
-                      explicitly assigning them.
+                    description: "Indica que este usu\xE1rio tem todas as permiss\xF5\
+                      es sem atribu\xED-las explicitamente."
                   username:
                     type: string
-                    description: Required. 150 characters or fewer. Letters, digits
-                      and @/./+/-/_ only.
+                    description: "Obrigat\xF3rio. 150 caracteres ou menos. Letras,\
+                      \ n\xFAmeros e @/./+/-/_ apenas."
                     pattern: ^[\w.@+-]+$
                     maxLength: 150
                   is_staff:
                     type: boolean
-                    description: Designates whether the user can log into this admin
-                      site.
+                    description: "Indica que usu\xE1rio consegue acessar este site\
+                      \ de administra\xE7\xE3o."
                   date_joined:
                     type: string
                     format: date-time
@@ -567,13 +914,14 @@ paths:
                     type: array
                     items:
                       type: integer
-                    description: The groups this user belongs to. A user will get
-                      all permissions granted to each of their groups.
+                    description: "Os grupos que este usu\xE1rio pertence. Um usu\xE1\
+                      rio ter\xE1 todas as permiss\xF5es concedidas a cada um dos\
+                      \ seus grupos."
                   user_permissions:
                     type: array
                     items:
                       type: integer
-                    description: Specific permissions for this user.
+                    description: "Permiss\xF5es espec\xEDficas para este usu\xE1rio."
                 required:
                 - password
                 - username
@@ -597,6 +945,78 @@ paths:
           type: string
       responses:
         '204':
+          description: ''
+  /register/userprofile/:
+    get:
+      operationId: listUserProfiles
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    created_at:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    user:
+                      type: integer
+                    profile:
+                      type: integer
+                    category:
+                      type: integer
+                      nullable: true
+                  required:
+                  - user
+                  - profile
+          description: ''
+    post:
+      operationId: CreateUserProfile
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: integer
+                profile:
+                  type: integer
+                category:
+                  type: integer
+                  nullable: true
+              required:
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
           description: ''
   /register/userprofile/{id}/:
     get:
@@ -737,1000 +1157,7 @@ paths:
       responses:
         '204':
           description: ''
-  /register/teacher/{id}/:
-    get:
-      operationId: RetrieveUser
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this user.
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                properties:
-                  id:
-                    type: integer
-                    readOnly: true
-                  password:
-                    type: string
-                    maxLength: 128
-                  last_login:
-                    type: string
-                    format: date-time
-                    nullable: true
-                  is_superuser:
-                    type: boolean
-                    description: Designates that this user has all permissions without
-                      explicitly assigning them.
-                  username:
-                    type: string
-                    description: Required. 150 characters or fewer. Letters, digits
-                      and @/./+/-/_ only.
-                    pattern: ^[\w.@+-]+$
-                    maxLength: 150
-                  is_staff:
-                    type: boolean
-                    description: Designates whether the user can log into this admin
-                      site.
-                  date_joined:
-                    type: string
-                    format: date-time
-                  first_name:
-                    type: string
-                    maxLength: 100
-                  last_name:
-                    type: string
-                    maxLength: 100
-                  cbj_id:
-                    type: string
-                    maxLength: 100
-                  primary_phone:
-                    type: string
-                    maxLength: 100
-                  alternative_phone:
-                    type: string
-                    maxLength: 100
-                  email:
-                    type: string
-                    format: email
-                    maxLength: 254
-                  cpf:
-                    type: integer
-                  notes:
-                    type: string
-                    nullable: true
-                    maxLength: 1000
-                  rg:
-                    type: integer
-                  created_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  is_active:
-                    type: boolean
-                  groups:
-                    type: array
-                    items:
-                      type: integer
-                    description: The groups this user belongs to. A user will get
-                      all permissions granted to each of their groups.
-                  user_permissions:
-                    type: array
-                    items:
-                      type: integer
-                    description: Specific permissions for this user.
-                required:
-                - password
-                - username
-                - first_name
-                - last_name
-                - cbj_id
-                - primary_phone
-                - alternative_phone
-                - email
-                - cpf
-                - rg
-          description: ''
-    put:
-      operationId: UpdateUser
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this user.
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                password:
-                  type: string
-                  maxLength: 128
-                last_login:
-                  type: string
-                  format: date-time
-                  nullable: true
-                is_superuser:
-                  type: boolean
-                  description: Designates that this user has all permissions without
-                    explicitly assigning them.
-                username:
-                  type: string
-                  description: Required. 150 characters or fewer. Letters, digits
-                    and @/./+/-/_ only.
-                  pattern: ^[\w.@+-]+$
-                  maxLength: 150
-                is_staff:
-                  type: boolean
-                  description: Designates whether the user can log into this admin
-                    site.
-                date_joined:
-                  type: string
-                  format: date-time
-                first_name:
-                  type: string
-                  maxLength: 100
-                last_name:
-                  type: string
-                  maxLength: 100
-                cbj_id:
-                  type: string
-                  maxLength: 100
-                primary_phone:
-                  type: string
-                  maxLength: 100
-                alternative_phone:
-                  type: string
-                  maxLength: 100
-                email:
-                  type: string
-                  format: email
-                  maxLength: 254
-                cpf:
-                  type: integer
-                notes:
-                  type: string
-                  nullable: true
-                  maxLength: 1000
-                rg:
-                  type: integer
-                is_active:
-                  type: boolean
-                groups:
-                  type: array
-                  items:
-                    type: integer
-                  description: The groups this user belongs to. A user will get all
-                    permissions granted to each of their groups.
-                user_permissions:
-                  type: array
-                  items:
-                    type: integer
-                  description: Specific permissions for this user.
-              required:
-              - password
-              - username
-              - first_name
-              - last_name
-              - cbj_id
-              - primary_phone
-              - alternative_phone
-              - email
-              - cpf
-              - rg
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                properties:
-                  id:
-                    type: integer
-                    readOnly: true
-                  password:
-                    type: string
-                    maxLength: 128
-                  last_login:
-                    type: string
-                    format: date-time
-                    nullable: true
-                  is_superuser:
-                    type: boolean
-                    description: Designates that this user has all permissions without
-                      explicitly assigning them.
-                  username:
-                    type: string
-                    description: Required. 150 characters or fewer. Letters, digits
-                      and @/./+/-/_ only.
-                    pattern: ^[\w.@+-]+$
-                    maxLength: 150
-                  is_staff:
-                    type: boolean
-                    description: Designates whether the user can log into this admin
-                      site.
-                  date_joined:
-                    type: string
-                    format: date-time
-                  first_name:
-                    type: string
-                    maxLength: 100
-                  last_name:
-                    type: string
-                    maxLength: 100
-                  cbj_id:
-                    type: string
-                    maxLength: 100
-                  primary_phone:
-                    type: string
-                    maxLength: 100
-                  alternative_phone:
-                    type: string
-                    maxLength: 100
-                  email:
-                    type: string
-                    format: email
-                    maxLength: 254
-                  cpf:
-                    type: integer
-                  notes:
-                    type: string
-                    nullable: true
-                    maxLength: 1000
-                  rg:
-                    type: integer
-                  created_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  is_active:
-                    type: boolean
-                  groups:
-                    type: array
-                    items:
-                      type: integer
-                    description: The groups this user belongs to. A user will get
-                      all permissions granted to each of their groups.
-                  user_permissions:
-                    type: array
-                    items:
-                      type: integer
-                    description: Specific permissions for this user.
-                required:
-                - password
-                - username
-                - first_name
-                - last_name
-                - cbj_id
-                - primary_phone
-                - alternative_phone
-                - email
-                - cpf
-                - rg
-          description: ''
-    patch:
-      operationId: PartialUpdateUser
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this user.
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                password:
-                  type: string
-                  maxLength: 128
-                last_login:
-                  type: string
-                  format: date-time
-                  nullable: true
-                is_superuser:
-                  type: boolean
-                  description: Designates that this user has all permissions without
-                    explicitly assigning them.
-                username:
-                  type: string
-                  description: Required. 150 characters or fewer. Letters, digits
-                    and @/./+/-/_ only.
-                  pattern: ^[\w.@+-]+$
-                  maxLength: 150
-                is_staff:
-                  type: boolean
-                  description: Designates whether the user can log into this admin
-                    site.
-                date_joined:
-                  type: string
-                  format: date-time
-                first_name:
-                  type: string
-                  maxLength: 100
-                last_name:
-                  type: string
-                  maxLength: 100
-                cbj_id:
-                  type: string
-                  maxLength: 100
-                primary_phone:
-                  type: string
-                  maxLength: 100
-                alternative_phone:
-                  type: string
-                  maxLength: 100
-                email:
-                  type: string
-                  format: email
-                  maxLength: 254
-                cpf:
-                  type: integer
-                notes:
-                  type: string
-                  nullable: true
-                  maxLength: 1000
-                rg:
-                  type: integer
-                is_active:
-                  type: boolean
-                groups:
-                  type: array
-                  items:
-                    type: integer
-                  description: The groups this user belongs to. A user will get all
-                    permissions granted to each of their groups.
-                user_permissions:
-                  type: array
-                  items:
-                    type: integer
-                  description: Specific permissions for this user.
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                properties:
-                  id:
-                    type: integer
-                    readOnly: true
-                  password:
-                    type: string
-                    maxLength: 128
-                  last_login:
-                    type: string
-                    format: date-time
-                    nullable: true
-                  is_superuser:
-                    type: boolean
-                    description: Designates that this user has all permissions without
-                      explicitly assigning them.
-                  username:
-                    type: string
-                    description: Required. 150 characters or fewer. Letters, digits
-                      and @/./+/-/_ only.
-                    pattern: ^[\w.@+-]+$
-                    maxLength: 150
-                  is_staff:
-                    type: boolean
-                    description: Designates whether the user can log into this admin
-                      site.
-                  date_joined:
-                    type: string
-                    format: date-time
-                  first_name:
-                    type: string
-                    maxLength: 100
-                  last_name:
-                    type: string
-                    maxLength: 100
-                  cbj_id:
-                    type: string
-                    maxLength: 100
-                  primary_phone:
-                    type: string
-                    maxLength: 100
-                  alternative_phone:
-                    type: string
-                    maxLength: 100
-                  email:
-                    type: string
-                    format: email
-                    maxLength: 254
-                  cpf:
-                    type: integer
-                  notes:
-                    type: string
-                    nullable: true
-                    maxLength: 1000
-                  rg:
-                    type: integer
-                  created_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  is_active:
-                    type: boolean
-                  groups:
-                    type: array
-                    items:
-                      type: integer
-                    description: The groups this user belongs to. A user will get
-                      all permissions granted to each of their groups.
-                  user_permissions:
-                    type: array
-                    items:
-                      type: integer
-                    description: Specific permissions for this user.
-                required:
-                - password
-                - username
-                - first_name
-                - last_name
-                - cbj_id
-                - primary_phone
-                - alternative_phone
-                - email
-                - cpf
-                - rg
-          description: ''
-    delete:
-      operationId: DestroyUser
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this user.
-        schema:
-          type: string
-      responses:
-        '204':
-          description: ''
-  /register/class/{id}/:
-    get:
-      operationId: RetrieveClass
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this class.
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                properties:
-                  id:
-                    type: integer
-                    readOnly: true
-                  teacher:
-                    type: integer
-                  student:
-                    type: integer
-                  dojo:
-                    type: integer
-                required:
-                - teacher
-                - student
-                - dojo
-          description: ''
-    put:
-      operationId: UpdateClass
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this class.
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                teacher:
-                  type: integer
-                student:
-                  type: integer
-                dojo:
-                  type: integer
-              required:
-              - teacher
-              - student
-              - dojo
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                properties:
-                  id:
-                    type: integer
-                    readOnly: true
-                  teacher:
-                    type: integer
-                  student:
-                    type: integer
-                  dojo:
-                    type: integer
-                required:
-                - teacher
-                - student
-                - dojo
-          description: ''
-    patch:
-      operationId: PartialUpdateClass
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this class.
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                teacher:
-                  type: integer
-                student:
-                  type: integer
-                dojo:
-                  type: integer
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                properties:
-                  id:
-                    type: integer
-                    readOnly: true
-                  teacher:
-                    type: integer
-                  student:
-                    type: integer
-                  dojo:
-                    type: integer
-                required:
-                - teacher
-                - student
-                - dojo
-          description: ''
-    delete:
-      operationId: DestroyClass
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this class.
-        schema:
-          type: string
-      responses:
-        '204':
-          description: ''
-  /register/user_list/:
-    get:
-      operationId: listUsers
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  properties:
-                    id:
-                      type: integer
-                      readOnly: true
-                    password:
-                      type: string
-                      maxLength: 128
-                    last_login:
-                      type: string
-                      format: date-time
-                      nullable: true
-                    is_superuser:
-                      type: boolean
-                      description: Designates that this user has all permissions without
-                        explicitly assigning them.
-                    username:
-                      type: string
-                      description: Required. 150 characters or fewer. Letters, digits
-                        and @/./+/-/_ only.
-                      pattern: ^[\w.@+-]+$
-                      maxLength: 150
-                    is_staff:
-                      type: boolean
-                      description: Designates whether the user can log into this admin
-                        site.
-                    date_joined:
-                      type: string
-                      format: date-time
-                    first_name:
-                      type: string
-                      maxLength: 100
-                    last_name:
-                      type: string
-                      maxLength: 100
-                    cbj_id:
-                      type: string
-                      maxLength: 100
-                    primary_phone:
-                      type: string
-                      maxLength: 100
-                    alternative_phone:
-                      type: string
-                      maxLength: 100
-                    email:
-                      type: string
-                      format: email
-                      maxLength: 254
-                    cpf:
-                      type: integer
-                    notes:
-                      type: string
-                      nullable: true
-                      maxLength: 1000
-                    rg:
-                      type: integer
-                    created_at:
-                      type: string
-                      format: date-time
-                      readOnly: true
-                    is_active:
-                      type: boolean
-                    groups:
-                      type: array
-                      items:
-                        type: integer
-                      description: The groups this user belongs to. A user will get
-                        all permissions granted to each of their groups.
-                    user_permissions:
-                      type: array
-                      items:
-                        type: integer
-                      description: Specific permissions for this user.
-                  required:
-                  - password
-                  - username
-                  - first_name
-                  - last_name
-                  - cbj_id
-                  - primary_phone
-                  - alternative_phone
-                  - email
-                  - cpf
-                  - rg
-          description: ''
-    post:
-      operationId: CreateUser
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                password:
-                  type: string
-                  maxLength: 128
-                last_login:
-                  type: string
-                  format: date-time
-                  nullable: true
-                is_superuser:
-                  type: boolean
-                  description: Designates that this user has all permissions without
-                    explicitly assigning them.
-                username:
-                  type: string
-                  description: Required. 150 characters or fewer. Letters, digits
-                    and @/./+/-/_ only.
-                  pattern: ^[\w.@+-]+$
-                  maxLength: 150
-                is_staff:
-                  type: boolean
-                  description: Designates whether the user can log into this admin
-                    site.
-                date_joined:
-                  type: string
-                  format: date-time
-                first_name:
-                  type: string
-                  maxLength: 100
-                last_name:
-                  type: string
-                  maxLength: 100
-                cbj_id:
-                  type: string
-                  maxLength: 100
-                primary_phone:
-                  type: string
-                  maxLength: 100
-                alternative_phone:
-                  type: string
-                  maxLength: 100
-                email:
-                  type: string
-                  format: email
-                  maxLength: 254
-                cpf:
-                  type: integer
-                notes:
-                  type: string
-                  nullable: true
-                  maxLength: 1000
-                rg:
-                  type: integer
-                is_active:
-                  type: boolean
-                groups:
-                  type: array
-                  items:
-                    type: integer
-                  description: The groups this user belongs to. A user will get all
-                    permissions granted to each of their groups.
-                user_permissions:
-                  type: array
-                  items:
-                    type: integer
-                  description: Specific permissions for this user.
-              required:
-              - password
-              - username
-              - first_name
-              - last_name
-              - cbj_id
-              - primary_phone
-              - alternative_phone
-              - email
-              - cpf
-              - rg
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                properties:
-                  id:
-                    type: integer
-                    readOnly: true
-                  password:
-                    type: string
-                    maxLength: 128
-                  last_login:
-                    type: string
-                    format: date-time
-                    nullable: true
-                  is_superuser:
-                    type: boolean
-                    description: Designates that this user has all permissions without
-                      explicitly assigning them.
-                  username:
-                    type: string
-                    description: Required. 150 characters or fewer. Letters, digits
-                      and @/./+/-/_ only.
-                    pattern: ^[\w.@+-]+$
-                    maxLength: 150
-                  is_staff:
-                    type: boolean
-                    description: Designates whether the user can log into this admin
-                      site.
-                  date_joined:
-                    type: string
-                    format: date-time
-                  first_name:
-                    type: string
-                    maxLength: 100
-                  last_name:
-                    type: string
-                    maxLength: 100
-                  cbj_id:
-                    type: string
-                    maxLength: 100
-                  primary_phone:
-                    type: string
-                    maxLength: 100
-                  alternative_phone:
-                    type: string
-                    maxLength: 100
-                  email:
-                    type: string
-                    format: email
-                    maxLength: 254
-                  cpf:
-                    type: integer
-                  notes:
-                    type: string
-                    nullable: true
-                    maxLength: 1000
-                  rg:
-                    type: integer
-                  created_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  is_active:
-                    type: boolean
-                  groups:
-                    type: array
-                    items:
-                      type: integer
-                    description: The groups this user belongs to. A user will get
-                      all permissions granted to each of their groups.
-                  user_permissions:
-                    type: array
-                    items:
-                      type: integer
-                    description: Specific permissions for this user.
-                required:
-                - password
-                - username
-                - first_name
-                - last_name
-                - cbj_id
-                - primary_phone
-                - alternative_phone
-                - email
-                - cpf
-                - rg
-          description: ''
-  /register/student_list/:
-    get:
-      operationId: listStudents
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  properties:
-                    id:
-                      type: integer
-                      readOnly: true
-                    created_at:
-                      type: string
-                      format: date-time
-                      readOnly: true
-                    user:
-                      type: integer
-                    profile:
-                      type: integer
-                    category:
-                      type: integer
-                      nullable: true
-                  required:
-                  - user
-                  - profile
-          description: ''
-    post:
-      operationId: CreateStudent
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                user:
-                  type: integer
-                profile:
-                  type: integer
-                category:
-                  type: integer
-                  nullable: true
-              required:
-              - user
-              - profile
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                properties:
-                  id:
-                    type: integer
-                    readOnly: true
-                  created_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  user:
-                    type: integer
-                  profile:
-                    type: integer
-                  category:
-                    type: integer
-                    nullable: true
-                required:
-                - user
-                - profile
-          description: ''
-  /register/userprofile_list/:
-    get:
-      operationId: listUserProfiles
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  properties:
-                    id:
-                      type: integer
-                      readOnly: true
-                    created_at:
-                      type: string
-                      format: date-time
-                      readOnly: true
-                    user:
-                      type: integer
-                    profile:
-                      type: integer
-                    category:
-                      type: integer
-                      nullable: true
-                  required:
-                  - user
-                  - profile
-          description: ''
-    post:
-      operationId: CreateUserProfile
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                user:
-                  type: integer
-                profile:
-                  type: integer
-                category:
-                  type: integer
-                  nullable: true
-              required:
-              - user
-              - profile
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                properties:
-                  id:
-                    type: integer
-                    readOnly: true
-                  created_at:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  user:
-                    type: integer
-                  profile:
-                    type: integer
-                  category:
-                    type: integer
-                    nullable: true
-                required:
-                - user
-                - profile
-          description: ''
-  /register/teacher_list/:
+  /register/teacher/:
     get:
       operationId: listTeachers
       parameters: []
@@ -1802,9 +1229,470 @@ paths:
                 - user
                 - profile
           description: ''
-  /register/class_list/:
+  /register/teacher/{id}/:
     get:
-      operationId: listClass
+      operationId: RetrieveUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  password:
+                    type: string
+                    maxLength: 128
+                  last_login:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  is_superuser:
+                    type: boolean
+                    description: "Indica que este usu\xE1rio tem todas as permiss\xF5\
+                      es sem atribu\xED-las explicitamente."
+                  username:
+                    type: string
+                    description: "Obrigat\xF3rio. 150 caracteres ou menos. Letras,\
+                      \ n\xFAmeros e @/./+/-/_ apenas."
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  is_staff:
+                    type: boolean
+                    description: "Indica que usu\xE1rio consegue acessar este site\
+                      \ de administra\xE7\xE3o."
+                  date_joined:
+                    type: string
+                    format: date-time
+                  first_name:
+                    type: string
+                    maxLength: 100
+                  last_name:
+                    type: string
+                    maxLength: 100
+                  cbj_id:
+                    type: string
+                    maxLength: 100
+                  primary_phone:
+                    type: string
+                    maxLength: 100
+                  alternative_phone:
+                    type: string
+                    maxLength: 100
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  cpf:
+                    type: integer
+                  notes:
+                    type: string
+                    nullable: true
+                    maxLength: 1000
+                  rg:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  is_active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: integer
+                    description: "Os grupos que este usu\xE1rio pertence. Um usu\xE1\
+                      rio ter\xE1 todas as permiss\xF5es concedidas a cada um dos\
+                      \ seus grupos."
+                  user_permissions:
+                    type: array
+                    items:
+                      type: integer
+                    description: "Permiss\xF5es espec\xEDficas para este usu\xE1rio."
+                required:
+                - password
+                - username
+                - first_name
+                - last_name
+                - cbj_id
+                - primary_phone
+                - alternative_phone
+                - email
+                - cpf
+                - rg
+          description: ''
+    put:
+      operationId: UpdateUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  type: string
+                  maxLength: 128
+                last_login:
+                  type: string
+                  format: date-time
+                  nullable: true
+                is_superuser:
+                  type: boolean
+                  description: "Indica que este usu\xE1rio tem todas as permiss\xF5\
+                    es sem atribu\xED-las explicitamente."
+                username:
+                  type: string
+                  description: "Obrigat\xF3rio. 150 caracteres ou menos. Letras, n\xFA\
+                    meros e @/./+/-/_ apenas."
+                  pattern: ^[\w.@+-]+$
+                  maxLength: 150
+                is_staff:
+                  type: boolean
+                  description: "Indica que usu\xE1rio consegue acessar este site de\
+                    \ administra\xE7\xE3o."
+                date_joined:
+                  type: string
+                  format: date-time
+                first_name:
+                  type: string
+                  maxLength: 100
+                last_name:
+                  type: string
+                  maxLength: 100
+                cbj_id:
+                  type: string
+                  maxLength: 100
+                primary_phone:
+                  type: string
+                  maxLength: 100
+                alternative_phone:
+                  type: string
+                  maxLength: 100
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                cpf:
+                  type: integer
+                notes:
+                  type: string
+                  nullable: true
+                  maxLength: 1000
+                rg:
+                  type: integer
+                is_active:
+                  type: boolean
+                groups:
+                  type: array
+                  items:
+                    type: integer
+                  description: "Os grupos que este usu\xE1rio pertence. Um usu\xE1\
+                    rio ter\xE1 todas as permiss\xF5es concedidas a cada um dos seus\
+                    \ grupos."
+                user_permissions:
+                  type: array
+                  items:
+                    type: integer
+                  description: "Permiss\xF5es espec\xEDficas para este usu\xE1rio."
+              required:
+              - password
+              - username
+              - first_name
+              - last_name
+              - cbj_id
+              - primary_phone
+              - alternative_phone
+              - email
+              - cpf
+              - rg
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  password:
+                    type: string
+                    maxLength: 128
+                  last_login:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  is_superuser:
+                    type: boolean
+                    description: "Indica que este usu\xE1rio tem todas as permiss\xF5\
+                      es sem atribu\xED-las explicitamente."
+                  username:
+                    type: string
+                    description: "Obrigat\xF3rio. 150 caracteres ou menos. Letras,\
+                      \ n\xFAmeros e @/./+/-/_ apenas."
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  is_staff:
+                    type: boolean
+                    description: "Indica que usu\xE1rio consegue acessar este site\
+                      \ de administra\xE7\xE3o."
+                  date_joined:
+                    type: string
+                    format: date-time
+                  first_name:
+                    type: string
+                    maxLength: 100
+                  last_name:
+                    type: string
+                    maxLength: 100
+                  cbj_id:
+                    type: string
+                    maxLength: 100
+                  primary_phone:
+                    type: string
+                    maxLength: 100
+                  alternative_phone:
+                    type: string
+                    maxLength: 100
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  cpf:
+                    type: integer
+                  notes:
+                    type: string
+                    nullable: true
+                    maxLength: 1000
+                  rg:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  is_active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: integer
+                    description: "Os grupos que este usu\xE1rio pertence. Um usu\xE1\
+                      rio ter\xE1 todas as permiss\xF5es concedidas a cada um dos\
+                      \ seus grupos."
+                  user_permissions:
+                    type: array
+                    items:
+                      type: integer
+                    description: "Permiss\xF5es espec\xEDficas para este usu\xE1rio."
+                required:
+                - password
+                - username
+                - first_name
+                - last_name
+                - cbj_id
+                - primary_phone
+                - alternative_phone
+                - email
+                - cpf
+                - rg
+          description: ''
+    patch:
+      operationId: PartialUpdateUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  type: string
+                  maxLength: 128
+                last_login:
+                  type: string
+                  format: date-time
+                  nullable: true
+                is_superuser:
+                  type: boolean
+                  description: "Indica que este usu\xE1rio tem todas as permiss\xF5\
+                    es sem atribu\xED-las explicitamente."
+                username:
+                  type: string
+                  description: "Obrigat\xF3rio. 150 caracteres ou menos. Letras, n\xFA\
+                    meros e @/./+/-/_ apenas."
+                  pattern: ^[\w.@+-]+$
+                  maxLength: 150
+                is_staff:
+                  type: boolean
+                  description: "Indica que usu\xE1rio consegue acessar este site de\
+                    \ administra\xE7\xE3o."
+                date_joined:
+                  type: string
+                  format: date-time
+                first_name:
+                  type: string
+                  maxLength: 100
+                last_name:
+                  type: string
+                  maxLength: 100
+                cbj_id:
+                  type: string
+                  maxLength: 100
+                primary_phone:
+                  type: string
+                  maxLength: 100
+                alternative_phone:
+                  type: string
+                  maxLength: 100
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                cpf:
+                  type: integer
+                notes:
+                  type: string
+                  nullable: true
+                  maxLength: 1000
+                rg:
+                  type: integer
+                is_active:
+                  type: boolean
+                groups:
+                  type: array
+                  items:
+                    type: integer
+                  description: "Os grupos que este usu\xE1rio pertence. Um usu\xE1\
+                    rio ter\xE1 todas as permiss\xF5es concedidas a cada um dos seus\
+                    \ grupos."
+                user_permissions:
+                  type: array
+                  items:
+                    type: integer
+                  description: "Permiss\xF5es espec\xEDficas para este usu\xE1rio."
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  password:
+                    type: string
+                    maxLength: 128
+                  last_login:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  is_superuser:
+                    type: boolean
+                    description: "Indica que este usu\xE1rio tem todas as permiss\xF5\
+                      es sem atribu\xED-las explicitamente."
+                  username:
+                    type: string
+                    description: "Obrigat\xF3rio. 150 caracteres ou menos. Letras,\
+                      \ n\xFAmeros e @/./+/-/_ apenas."
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  is_staff:
+                    type: boolean
+                    description: "Indica que usu\xE1rio consegue acessar este site\
+                      \ de administra\xE7\xE3o."
+                  date_joined:
+                    type: string
+                    format: date-time
+                  first_name:
+                    type: string
+                    maxLength: 100
+                  last_name:
+                    type: string
+                    maxLength: 100
+                  cbj_id:
+                    type: string
+                    maxLength: 100
+                  primary_phone:
+                    type: string
+                    maxLength: 100
+                  alternative_phone:
+                    type: string
+                    maxLength: 100
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  cpf:
+                    type: integer
+                  notes:
+                    type: string
+                    nullable: true
+                    maxLength: 1000
+                  rg:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  is_active:
+                    type: boolean
+                  groups:
+                    type: array
+                    items:
+                      type: integer
+                    description: "Os grupos que este usu\xE1rio pertence. Um usu\xE1\
+                      rio ter\xE1 todas as permiss\xF5es concedidas a cada um dos\
+                      \ seus grupos."
+                  user_permissions:
+                    type: array
+                    items:
+                      type: integer
+                    description: "Permiss\xF5es espec\xEDficas para este usu\xE1rio."
+                required:
+                - password
+                - username
+                - first_name
+                - last_name
+                - cbj_id
+                - primary_phone
+                - alternative_phone
+                - email
+                - cpf
+                - rg
+          description: ''
+    delete:
+      operationId: DestroyUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /register/tournament/:
+    get:
+      operationId: listTournaments
       parameters: []
       responses:
         '200':
@@ -1817,35 +1705,39 @@ paths:
                     id:
                       type: integer
                       readOnly: true
-                    teacher:
+                    created_at:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    user:
                       type: integer
-                    student:
+                    profile:
                       type: integer
-                    dojo:
+                    category:
                       type: integer
+                      nullable: true
                   required:
-                  - teacher
-                  - student
-                  - dojo
+                  - user
+                  - profile
           description: ''
     post:
-      operationId: CreateClass
+      operationId: CreateTournament
       parameters: []
       requestBody:
         content:
           application/json:
             schema:
               properties:
-                teacher:
+                user:
                   type: integer
-                student:
+                profile:
                   type: integer
-                dojo:
+                category:
                   type: integer
+                  nullable: true
               required:
-              - teacher
-              - student
-              - dojo
+              - user
+              - profile
       responses:
         '200':
           content:
@@ -1855,14 +1747,1044 @@ paths:
                   id:
                     type: integer
                     readOnly: true
-                  teacher:
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
                     type: integer
-                  student:
+                  profile:
                     type: integer
-                  dojo:
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
+  /register/tournament/{id}/:
+    get:
+      operationId: RetrieveTournament
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this tournament.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                  initial_date:
+                    type: string
+                    format: date
+                  end_date:
+                    type: string
+                    format: date
+                required:
+                - name
+                - initial_date
+                - end_date
+          description: ''
+    put:
+      operationId: UpdateTournament
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this tournament.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                initial_date:
+                  type: string
+                  format: date
+                end_date:
+                  type: string
+                  format: date
+              required:
+              - name
+              - initial_date
+              - end_date
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                  initial_date:
+                    type: string
+                    format: date
+                  end_date:
+                    type: string
+                    format: date
+                required:
+                - name
+                - initial_date
+                - end_date
+          description: ''
+    patch:
+      operationId: PartialUpdateTournament
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this tournament.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                initial_date:
+                  type: string
+                  format: date
+                end_date:
+                  type: string
+                  format: date
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                  initial_date:
+                    type: string
+                    format: date
+                  end_date:
+                    type: string
+                    format: date
+                required:
+                - name
+                - initial_date
+                - end_date
+          description: ''
+    delete:
+      operationId: DestroyTournament
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this tournament.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /register/participants/:
+    get:
+      operationId: listParticipants
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    tournament:
+                      type: integer
+                    user:
+                      type: integer
+                    profile:
+                      type: integer
+                  required:
+                  - tournament
+                  - user
+                  - profile
+          description: ''
+    post:
+      operationId: CreateParticipants
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                tournament:
+                  type: integer
+                user:
+                  type: integer
+                profile:
+                  type: integer
+              required:
+              - tournament
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  tournament:
+                    type: integer
+                  user:
+                    type: integer
+                  profile:
                     type: integer
                 required:
-                - teacher
-                - student
-                - dojo
+                - tournament
+                - user
+                - profile
+          description: ''
+  /register/participants/{id}/:
+    get:
+      operationId: RetrieveParticipants
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this participants.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  tournament:
+                    type: integer
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                required:
+                - tournament
+                - user
+                - profile
+          description: ''
+    put:
+      operationId: UpdateParticipants
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this participants.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                tournament:
+                  type: integer
+                user:
+                  type: integer
+                profile:
+                  type: integer
+              required:
+              - tournament
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  tournament:
+                    type: integer
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                required:
+                - tournament
+                - user
+                - profile
+          description: ''
+    patch:
+      operationId: PartialUpdateParticipants
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this participants.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                tournament:
+                  type: integer
+                user:
+                  type: integer
+                profile:
+                  type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  tournament:
+                    type: integer
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                required:
+                - tournament
+                - user
+                - profile
+          description: ''
+    delete:
+      operationId: DestroyParticipants
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this participants.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /register/competitor/:
+    get:
+      operationId: listCompetitors
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    created_at:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    user:
+                      type: integer
+                    profile:
+                      type: integer
+                    category:
+                      type: integer
+                      nullable: true
+                  required:
+                  - user
+                  - profile
+          description: ''
+    post:
+      operationId: CreateCompetitor
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: integer
+                profile:
+                  type: integer
+                category:
+                  type: integer
+                  nullable: true
+              required:
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
+  /register/competitor/{id}/:
+    get:
+      operationId: RetrieveCompetitor
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this competitor.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  tournament:
+                    type: integer
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                required:
+                - tournament
+                - user
+                - profile
+          description: ''
+    put:
+      operationId: UpdateCompetitor
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this competitor.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                tournament:
+                  type: integer
+                user:
+                  type: integer
+                profile:
+                  type: integer
+              required:
+              - tournament
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  tournament:
+                    type: integer
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                required:
+                - tournament
+                - user
+                - profile
+          description: ''
+    patch:
+      operationId: PartialUpdateCompetitor
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this competitor.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                tournament:
+                  type: integer
+                user:
+                  type: integer
+                profile:
+                  type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  tournament:
+                    type: integer
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                required:
+                - tournament
+                - user
+                - profile
+          description: ''
+    delete:
+      operationId: DestroyCompetitor
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this competitor.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /register/referee/:
+    get:
+      operationId: listReferees
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    created_at:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    user:
+                      type: integer
+                    profile:
+                      type: integer
+                    category:
+                      type: integer
+                      nullable: true
+                  required:
+                  - user
+                  - profile
+          description: ''
+    post:
+      operationId: CreateReferee
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: integer
+                profile:
+                  type: integer
+                category:
+                  type: integer
+                  nullable: true
+              required:
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
+  /register/referee/{id}/:
+    get:
+      operationId: RetrieveReferee
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this referee.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  tournament:
+                    type: integer
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                required:
+                - tournament
+                - user
+                - profile
+          description: ''
+    put:
+      operationId: UpdateReferee
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this referee.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                tournament:
+                  type: integer
+                user:
+                  type: integer
+                profile:
+                  type: integer
+              required:
+              - tournament
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  tournament:
+                    type: integer
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                required:
+                - tournament
+                - user
+                - profile
+          description: ''
+    patch:
+      operationId: PartialUpdateReferee
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this referee.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                tournament:
+                  type: integer
+                user:
+                  type: integer
+                profile:
+                  type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  tournament:
+                    type: integer
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                required:
+                - tournament
+                - user
+                - profile
+          description: ''
+    delete:
+      operationId: DestroyReferee
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this referee.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /register/knockout/:
+    get:
+      operationId: listKnockouts
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    created_at:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    user:
+                      type: integer
+                    profile:
+                      type: integer
+                    category:
+                      type: integer
+                      nullable: true
+                  required:
+                  - user
+                  - profile
+          description: ''
+    post:
+      operationId: CreateKnockout
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: integer
+                profile:
+                  type: integer
+                category:
+                  type: integer
+                  nullable: true
+              required:
+              - user
+              - profile
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  user:
+                    type: integer
+                  profile:
+                    type: integer
+                  category:
+                    type: integer
+                    nullable: true
+                required:
+                - user
+                - profile
+          description: ''
+  /register/knockout/{id}/:
+    get:
+      operationId: RetrieveKnockout
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this knockout.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  is_initial_match:
+                    type: boolean
+                  date:
+                    type: string
+                    format: date
+                  time:
+                    type: string
+                  tournament:
+                    type: integer
+                  first_match:
+                    type: integer
+                    nullable: true
+                  second_match:
+                    type: integer
+                    nullable: true
+                  competitor_one:
+                    type: integer
+                  competitor_two:
+                    type: integer
+                  winner:
+                    type: integer
+                  referee:
+                    type: integer
+                required:
+                - date
+                - time
+                - tournament
+                - competitor_one
+                - competitor_two
+                - winner
+                - referee
+          description: ''
+    put:
+      operationId: UpdateKnockout
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this knockout.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                is_initial_match:
+                  type: boolean
+                date:
+                  type: string
+                  format: date
+                time:
+                  type: string
+                tournament:
+                  type: integer
+                first_match:
+                  type: integer
+                  nullable: true
+                second_match:
+                  type: integer
+                  nullable: true
+                competitor_one:
+                  type: integer
+                competitor_two:
+                  type: integer
+                winner:
+                  type: integer
+                referee:
+                  type: integer
+              required:
+              - date
+              - time
+              - tournament
+              - competitor_one
+              - competitor_two
+              - winner
+              - referee
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  is_initial_match:
+                    type: boolean
+                  date:
+                    type: string
+                    format: date
+                  time:
+                    type: string
+                  tournament:
+                    type: integer
+                  first_match:
+                    type: integer
+                    nullable: true
+                  second_match:
+                    type: integer
+                    nullable: true
+                  competitor_one:
+                    type: integer
+                  competitor_two:
+                    type: integer
+                  winner:
+                    type: integer
+                  referee:
+                    type: integer
+                required:
+                - date
+                - time
+                - tournament
+                - competitor_one
+                - competitor_two
+                - winner
+                - referee
+          description: ''
+    patch:
+      operationId: PartialUpdateKnockout
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this knockout.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                is_initial_match:
+                  type: boolean
+                date:
+                  type: string
+                  format: date
+                time:
+                  type: string
+                tournament:
+                  type: integer
+                first_match:
+                  type: integer
+                  nullable: true
+                second_match:
+                  type: integer
+                  nullable: true
+                competitor_one:
+                  type: integer
+                competitor_two:
+                  type: integer
+                winner:
+                  type: integer
+                referee:
+                  type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  is_initial_match:
+                    type: boolean
+                  date:
+                    type: string
+                    format: date
+                  time:
+                    type: string
+                  tournament:
+                    type: integer
+                  first_match:
+                    type: integer
+                    nullable: true
+                  second_match:
+                    type: integer
+                    nullable: true
+                  competitor_one:
+                    type: integer
+                  competitor_two:
+                    type: integer
+                  winner:
+                    type: integer
+                  referee:
+                    type: integer
+                required:
+                - date
+                - time
+                - tournament
+                - competitor_one
+                - competitor_two
+                - winner
+                - referee
+          description: ''
+    delete:
+      operationId: DestroyKnockout
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this knockout.
+        schema:
+          type: string
+      responses:
+        '204':
           description: ''
