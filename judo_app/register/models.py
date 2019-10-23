@@ -175,3 +175,118 @@ class Teacher(UserProfile):
 
     class Meta:
         proxy = True
+
+
+class Tournament(models.Model):
+    """
+    Classe que define um Torneio
+    """
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255, db_column='tournament_name')
+    initial_date = models.DateField()
+    end_date = models.DateField()
+
+
+class TournamentProfiles(models.Model):
+    """
+    Classe que contém os tipos de Perfis em um Torneio
+    """
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+
+
+class Participants(models.Model):
+    """
+    Class que relaciona os tipos de usuarios em um torneio por perfil
+    """
+    tournament = models.ForeignKey(Tournament,
+                                   on_delete=models.CASCADE,
+                                   related_name="%(app_label)s_%(class)s_tournament",
+                                   related_query_name="%(app_label)s_%(class)ss_tournament",
+                                   )
+    user = models.ForeignKey(User,
+                             on_delete=models.deletion.DO_NOTHING,
+                             related_name="%(app_label)s_%(class)ss_participant",
+                             related_query_name="%(app_label)s_%(class)ss_participant")
+    profile = models.ForeignKey(TournamentProfiles,
+                                on_delete=models.CASCADE)
+
+
+class CompetitorManager(models.Manager):
+    """
+        Controlador de Buscas a Base filtrado por Competidor
+    """
+
+    def get_queryset(self):
+        """
+        Este Método Filtra o modelo base
+        :return: Objeto QuerySet
+        """
+        return super().get_queryset().filter(profile_id__exact=1)
+
+
+class Competitor(Participants):
+    """
+        Classe que define um Competidor em um torneio
+    """
+
+    objects = CompetitorManager()
+
+    class Meta:
+        proxy = True
+
+
+class RefereeManager(models.Manager):
+    """
+        Controlador de Buscas a Base filtrado por Arbitro
+    """
+
+    def get_queryset(self):
+        """
+        Este Método Filtra o modelo base
+        :return: Objeto QuerySet
+        """
+        return super().get_queryset().filter(profile_id__exact=2)
+
+
+class Referee(Participants):
+    """
+        Classe que define um Arbitro em um torneio
+    """
+
+    objects = RefereeManager()
+
+    class Meta:
+        proxy = True
+
+
+class Knockout(models.Model):
+    """
+    Classe que define um chaveamento em um torneio
+    """
+    id = models.AutoField(primary_key=True)
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE,
+                                   related_name="%(app_label)s_%(class)s_tournament",
+                                   related_query_name="%(app_label)s_%(class)ss_tournament")
+    first_match = models.ForeignKey('self', on_delete=models.CASCADE, null=True,
+                                    related_name="%(class)s_first_match",
+                                    related_query_name="first_matchs")
+    second_match = models.ForeignKey('self', on_delete=models.CASCADE, null=True,
+                                     related_name="%(class)s_second_match",
+                                     related_query_name="second_matchs")
+    is_initial_match = models.BooleanField(default=True)
+    date = models.DateField()
+    time = models.TimeField()
+    competitor_one = models.ForeignKey(Competitor, on_delete=models.CASCADE,
+                                       related_name="%(app_label)s_%(class)s_competitor_one",
+                                       related_query_name="%(app_label)s_%(class)ss_competitor_one")
+    competitor_two = models.ForeignKey(Competitor, on_delete=models.CASCADE,
+                                       related_name="%(app_label)s_%(class)s_competitor_two",
+                                       related_query_name="%(app_label)s_%(class)ss_competitor_two")
+    winner = models.ForeignKey(Competitor, on_delete=models.CASCADE,
+                               related_name="%(app_label)s_%(class)ss_winner",
+                               related_query_name="%(app_label)s_%(class)ss_winner")
+    referee = models.ForeignKey(Referee, on_delete=models.CASCADE,
+                               related_name="%(app_label)s_%(class)ss_referee",
+                               related_query_name="%(app_label)s_%(class)ss_referee")
+
