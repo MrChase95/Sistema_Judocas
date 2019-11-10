@@ -117,3 +117,130 @@ article h3 a{
     font-size: 15px;
     overflow: hidden;
 }
+#imagem_aluno{
+    float: left;
+    margin-top: 200px;
+    margin-left: -50px;
+      overflow:hidden;
+    font-size: 25pt;
+}
+#imagem_aluno .icon:hover{
+    opacity: 1;
+}
+#imagem_aluno .icon{
+    padding-left: 50px;
+    opacity: 0.5;
+}
+#imagem_professor{
+    float: left;
+    margin-top: 180px;
+    margin-left: 150px;
+      overflow:hidden;
+    font-size: 25pt;
+}
+#imagem_professor .icon:hover{
+    opacity: 1;
+}
+#imagem_professor .icon{
+    padding-left: 50px;
+    opacity: 0.5;
+}
+#imagem_dojo{
+    float: left;
+    margin-top: -530px;
+    margin-left: 650px;
+      overflow:hidden;
+    font-size: 25pt;
+}
+#imagem_dojo .icon:hover{
+    opacity: 1;
+}
+#imagem_dojo .icon{
+    padding-left: 50px;
+    opacity: 0.5;
+}
+#containeradm{
+    width: 1300px;
+    height: 940px;
+    margin: 0 auto;
+}
+#subtitle {
+  text-align: center;
+  background-size: cover;
+  text-shadow: 1px 1px 5px grey;
+}
+#menualuno {
+  background-color: white;
+  display: flex;
+  display: -webkit- flex;
+  justify-content: center;
+  justify-content: -webkit- center;
+  margin-bottom: 10px;
+    
+}
+#menualuno ul li {
+  list-style: none;
+  display: inline-block;
+  display: -webkit- inline-block;
+  padding: 0px 20px;
+   margin-top: 8px;
+
+}
+#menualuno ul .bt:hover{
+    opacity: 0.3;
+}
+#menualuno ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 15pt;
+}
+#menuprofessor {
+  background-color: white;
+  display: flex;
+  display: -webkit- flex;
+  justify-content: center;
+  justify-content: -webkit- center;
+  margin-bottom: 20px;
+    
+}
+#menuprofessor ul li {
+  list-style: none;
+  display: inline-block;
+  display: -webkit- inline-block;
+  padding: 0px 20px;
+   margin-top: 7px;
+
+}
+#menuprofessor ul .bt:hover{
+    opacity: 0.3;
+}
+#menuprofessor ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 15pt;
+}
+#menudojo {
+  background-color: white;
+  display: flex;
+  display: -webkit- flex;
+  justify-content: center;
+  justify-content: -webkit- center;
+  margin-bottom: 20px;
+    
+}
+#menudojo ul li {
+  list-style: none;
+  display: inline-block;
+  display: -webkit- inline-block;
+  padding: 0px 20px;
+   margin-top: 7px;
+
+}
+#menudojo ul .bt:hover{
+    opacity: 0.3;
+}
+#menudojo ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 15pt;
+}
