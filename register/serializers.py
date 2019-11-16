@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Student, User, Teacher, UserProfile, Class, Profile
+from .models import (Student, User, Teacher, UserProfile, Class,
+                     Tournament, Participants, Competitor, Referee, Knockout)
 from typing import *
 
 
@@ -25,6 +26,9 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+    def create(self, validated_data):
+        return self.Meta.model.objects.create_user(**validated_data)
 
     def validate_cpf(self, value):
         digits_weight: List[List[int]] = [
@@ -73,4 +77,34 @@ class UserSerializer(serializers.ModelSerializer):
 class ClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = Class
+        fields = '__all__'
+
+
+class TournamentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tournament
+        fields = '__all__'
+
+
+class ParticipantsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Participants
+        fields = '__all__'
+
+
+class CompetitorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Competitor
+        fields = '__all__'
+
+
+class RefereeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Referee
+        fields = '__all__'
+
+
+class KnockoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Knockout
         fields = '__all__'

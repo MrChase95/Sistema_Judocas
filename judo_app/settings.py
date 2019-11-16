@@ -25,7 +25,8 @@ SECRET_KEY = '%duc($n=1sim4+lj7yk#ja-aievb3msag*@r3v)_ye-#@q63g8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 'localhost',
+                 'matheus-mackbook-air.local', '172.16.38.234']
 
 
 # Application definition
@@ -57,6 +58,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'judo_app.urls'
 
 AUTH_USER_MODEL = 'register.User'
+
+LOGIN_REDIRECT_URL = '/home'
 
 TEMPLATES = [
     {
@@ -110,9 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-US'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -129,7 +132,8 @@ STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
