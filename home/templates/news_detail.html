@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div id="news">
+<article id="noticias">
         <h3>Detalhes do Post</h1>
         <hr>
         <br>
@@ -12,5 +12,5 @@
         <h3>{{news.title}}</h3>
         <p>{{ news.text|linebreaksbr }}</p>
         <a href="{% url 'news-edit' pk=news.pk %}">Editar Esta Noticia<span class="glyphicon glyphicon-pencil"></span></a>
-    </div>
+</article>
 {% endblock %}

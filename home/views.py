@@ -20,5 +20,13 @@ class LoginView(TemplateView):
         return render(request, self.template_name, *args)
 
 
+class AdminView(TemplateView):
+    template_name = 'admin_page.html'
+    renderer_classes = [renderers.TemplateHTMLRenderer]
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {})
+
+
 def HomeView_basic(request, *args, **kwargs):
     return render(request, "home.html", {})
