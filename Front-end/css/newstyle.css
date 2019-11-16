@@ -244,3 +244,320 @@ article h3 a{
   color: black;
   font-size: 15pt;
 }
+
+.round {
+  float: left;
+}
+.round.r-of-8 {
+  
+}
+.round.r-of-4 {
+  margin-top: 25px;
+}
+.bracket-game {
+  max-width: 125px;
+  margin: 10px 0;
+}
+
+.bracket-game-2{
+    margin-top: 20px;
+}
+
+.bracket-game-3{
+    margin-top: 18px;
+}
+
+.bracket-game-4{
+    margin-top: 18px;
+}
+
+.bracket-game-8{
+    margin-top: 17px;
+}
+.bracket-game-9{
+    margin-top: 75px;
+    
+}
+
+.bracket-game-10{
+    margin-top: 65px;
+    
+}
+
+.bracket-game-11{
+    margin-top: 60px;
+    
+}
+
+.bracket-game-12{
+    margin-top: 90px;
+    margin-left: 50px;
+}
+
+.bracket-game-13{
+    margin-top: 175px;
+    margin-left: 50px;
+}
+
+.bracket-game-14{
+    margin-top: 190px;
+    margin-left: 50px;
+}
+.player {
+  min-width: 100px;
+  border: 1px solid #AAA;
+  padding-left: 12px;
+}
+.player.top {
+  border-radius: 3px 3px 0 0;
+}
+.player.bot {
+  border-radius: 0 0 3px 3px;
+}
+
+.player.win {
+  background-color: #B8F2B8;
+}
+.player.loss {
+  background-color: #F2B8B8;
+}
+.connectors {
+  float: left;
+  min-width: 35px;
+}
+.connectors.r-of-4 .top-line {
+  position: relative;
+  top: 30px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-4 .top-line2 {
+  position: relative;
+  top: 152px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-4 .top-line3 {
+  position: relative;
+  top: 270px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-4 .top-line4 {
+  position: relative;
+  top: 375px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+.connectors.r-of-4 .bottom-line {
+  position: relative;
+  top: 87px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-4 .bottom-line2 {
+  position: relative;
+  top: 210px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-4 .bottom-line3 {
+  position: relative;
+  top: 315px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-4 .bottom-line4 {
+  position: relative;
+  top: 421px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+.connectors.r-of-4 .vert-line {
+  position: relative;
+  top: 14px;
+  left: -16px;
+  height: 67px;
+  border-right: 2px solid #AAA;
+}
+
+.connectors.r-of-4 .vert-line2 {
+  position: relative;
+  top: 71px;
+  left: -16px;
+  height: 67px;
+  border-right: 2px solid #AAA;
+}
+
+.connectors.r-of-4 .vert-line3 {
+  position: relative;
+  top: 124px;
+  left: -16px;
+  height: 55px;
+  border-right: 2px solid #AAA;
+}
+
+.connectors.r-of-4 .vert-line4 {
+  position: relative;
+  top: 176px;
+  left: -16px;
+  height: 56px;
+  border-right: 2px solid #AAA;
+}
+.connectors.r-of-4 .next-line {
+  position: relative;
+  top: -190px;
+  left: 17px;
+  width: 18px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-4 .next-line2 {
+  position: relative;
+  top: -74px;
+  left: 17px;
+  width: 19px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-4 .next-line3 {
+  position: relative;
+  top: 34px;
+  left: 17px;
+  width: 18px;
+  border: 1px solid #AAA;
+}
+
+
+.connectors.r-of-4 .next-line4 {
+  position: relative;
+  top: 135px;
+  left: 17px;
+  width: 18px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-2 .top-line5{
+  position: relative;
+  top: 62px;
+  left: -151px;
+  bottom: 120px;
+  width: 17px;
+  border: 1px solid #AAA;    
+}
+
+.connectors.r-of-2 .top-line6{
+  position: relative;
+  top: 289px;
+  left: -150px;
+  bottom: 120px;
+  width: 17px;
+  border: 1px solid #AAA;    
+}
+
+.connectors.r-of-2 .bottom-line5 {
+  position: relative;
+  top: 178px;
+  left: -150px; 
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-2 .bottom-line6 {
+  position: relative;
+  top: 388px;
+  left: -150px; 
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-2 .vert-line5 {
+  position: relative;
+  top: 54px;
+  left: -167px;
+  height: 122px;
+  border-right: 2px solid #AAA;
+}
+
+.connectors.r-of-2 .vert-line6 {
+  position: relative;
+  top: 161px;
+  left: -166px;
+  height: 105px;
+  border-right: 2px solid #AAA;
+}
+
+.connectors.r-of-2 .next-line5 {
+  position: relative;
+  top: -124px;
+  left: -133px;
+  width: 33px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-2 .next-line6 {
+  position: relative;
+  top: 94px;
+  left: -132px;
+  width: 32px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-2 .top-line7{
+  position: relative;
+  top: -121px;
+  left: -86px;
+  bottom: 120px;
+  width: 17px;
+  border: 1px solid #AAA;    
+}
+
+.connectors.r-of-2 .bottom-line7 {
+  position: relative;
+  top: 93px;
+  left: -85px; 
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-2 .vert-line7 {
+  position: relative;
+  top: -125px;
+  left: -130px;
+ 
+  height: 218px;
+  border-right: 2px solid #AAA;
+}
+
+.connectors.r-of-2 .next-line7 {
+  position: relative;
+  top: -243px;
+  left: -65px;
+  width: 63px;
+  border: 1px solid #AAA;
+}
+
+.champion{
+    position: relative;
+    top: 110px;
+    left: -170px;
+    font-size: 50px;
+   
+}
+
+#trofeu {
+    width: 20%;
+    position: relative;
+    top: 110px;
+    left: -177px
+}
+
+.clear {
+  clear: both;
+}
