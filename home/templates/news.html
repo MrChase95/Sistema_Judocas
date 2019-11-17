@@ -1,11 +1,36 @@
-{% extends "base.html" %}
-{% block content %}
-        <h3><a href="{% url 'news-new' %}" >Nova Noticia <span class="glyphicon glyphicon-plus"></span></a></h3>
+{% extends "base.html" %} {% load static %} {% block content %}
+<div id="containerNoticia">
+  <h1><span id="text_noticia">Noticias</span></h1>
+  <div id="imagem_noticia">
+    <img
+      src="{% static 'home/Noticias.png' %}"
+      alt="imagem circular azul com dois lutadores, onde um esta realizando um golpe no outro."
+      width="200"
+      height="200"
+    />
+    <br />
+  </div>
+
+  <br />
+  <article id="noticias">
+    <h3>
+      <a href="{% url 'news-new' %}"
+        >Nova Noticia <span class="glyphicon glyphicon-plus"></span
+      ></a>
+    </h3>
     {% for news in news %}
-        <hr>
-        <p>Publicada em: {{news.published}} - Autor: {{news.author}}</p>
-        <h3><a href = "{% url 'news-detail' pk=news.pk %}">{{news.title}}</a></h3>
-        <p>{{ news.text|linebreaksbr }}</p>
+    <hr />
+    <p class="date">
+      Publicada em: {{news.published}} - Autor: {{news.author}}
+    </p>
+    <h3><a href="{% url 'news-detail' pk=news.pk %}">{{news.title}}</a></h3>
+    <p>{{ news.text|linebreaksbr }}</p>
     {% endfor %}
+  </article>
+  <div class="stopfloat"></div>
+</div>
+<br />
+<hr />
+<br />
 
 {% endblock %}

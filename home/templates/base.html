@@ -2,39 +2,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Sistema de Judocas</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <link rel="stylesheet" href="{% static 'home/newstyle.css' %}">
   </head>
   <body>
-    <div id="banner">
+    <header id="banner">
+      <br>
       <h1>Sistema Judocas</h1>
       <nav id="menu">
-        <ul>
-          <li><a href="{% url 'home' %}"><img src="https://image.flaticon.com/icons/svg/25/25694.svg" width = "30px" height="30px"></a></li>
-          <li><a href="#"><img src = "https://image.flaticon.com/icons/svg/1152/1152861.svg" width = "30px" height="30px"></a></li>
-          <li><a href="{% url 'news-list' %}"><img src = "https://image.flaticon.com/icons/svg/1074/1074055.svg" width = "30px" height="30px"></a></li>
-          <li><a href="/home/swagger-ui/"> <img src="https://image.flaticon.com/icons/svg/1098/1098420.svg" width = "30px" height="30px"></a></li>
-        </ul>
+          <ul>
+              <li class="bt"><a href="{% url 'home' %}">Home <br><img src="{% static 'home/home.png' %}" width="30px" height="30px"></a></li>
+              <li class="bt"><a href="#">Torneio<br><img src="{% static 'home/trophy.png'%}" width="30px" height="30px"></a></li>
+              <li class="bt"><a href="{% url 'news-list' %}">Noticias<br><img src="{% static 'home/newspaper.png' %}" width="30px" height="30px"></a></li>
+              <li class="bt"><a href="{% url 'admin' %}">Admin.<br> <img src="{% static 'home/settings.png' %}" width="30px" height="30px"></a></li>
+              <li class="bt"><a href="{% url 'login_screen' %}">Login<br><img src="{% static 'home/enter.png' %}" width="30px" height="30px"></a></li>
+            </ul>
       </nav>
-    </div>
+  </header>
 
     {% block content %}
     
     {% endblock %}
     
-    <br>
-    <hr>
-    <div class="stopfloat"></div>
-    <div id="footer">
-      <p>Matheus Pedro Rodrigues Ferreira TIA: 31702351</p>
-      <p>João Pedro da Silva Sousa TIA: 31725163</p>
-      <p>Rodrigo Costa TIA: 31711030</p>
-      <p>Lucas Keiti TIA: 31755501</p>
-      <p>Matheus Henrique Ferreira TIA: 31745377</p>
-    </div>
+    <footer id="footer">
+      <br>
+      <br>
+      <a class="fb" href="https://www.facebook.com/"><img src="{% static 'home/fb.png' %}" width="90px" height="80px"></a>
+      <a class="insta" href="https://www.instagram.com/"><img src="{% static 'home/insta.png' %}" width="110px" height="80px"></a>
+    <p>Matheus Pedro Rodrigues Ferreira TIA: 31702351</p>
+    <p>João Pedro da Silva Sousa TIA: 31725163</p>
+    <p>Rodrigo Costa TIA: 31711030</p>
+    <p>Lucas Keiti TIA: 31755501</p>
+    <p>Matheus Henrique Cardinalli Ferreira TIA: 31745377</p>
+      
+  <br>
+  </footer>
+
+
   </body>
 </html>

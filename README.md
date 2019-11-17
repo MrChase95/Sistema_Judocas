@@ -4,14 +4,14 @@ Sistema de controle de uma academia de Judo
 
 ## How to Install
 
-##### Windows:
+### Windows
 
 `python3 -m venv venv` \
 `venv\Scripts\activate.bat` \
 `cd judo_app` \
 `pip install -r requirements.txt`
 
-##### Linux/Mac OS:
+### Linux/Mac OS
 
 `python3 -m venv venv` \
 `source venv/bin/activate` \

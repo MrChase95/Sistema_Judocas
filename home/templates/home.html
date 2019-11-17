@@ -1,23 +1,32 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 
-<div id="historia_judo">
-<h3>História do Judô </h3>
-<p>O estilo Takenouchi-ryu fundado em 1532 é considerado a origem do estilo Ju-Jutsu japonês. 
-    O judô é derivado do Ju-Jutsu, uma arte que serve tanto para atacar quanto para defender usando nada mais que o seu próprio corpo.</p>
+<div id=containerHomepage>
+    <div id="imagem_campeonato">
+        <img src="{% static 'home/img_luta.png' %}" alt="imagem de dois lutadores" width=500 height=500>
+        <br>
+        <a class="icon" href="#"><img src="{% static 'home/campeonato_icon.png'%}" width="150px" height="150px"></a>
+    </div>
+    <br>
 
-    <h3>Criação do Judô e o Instituto Kodokan</h3>
+        <article id="historia_judo">
+        <h3>História do Judô </h3>
+        <p>O estilo Takenouchi-ryu fundado em 1532 é considerado a origem do estilo Ju-Jutsu japonês. 
+            O judô é derivado do Ju-Jutsu, uma arte que serve tanto para atacar quanto para defender usando nada mais que o seu próprio corpo.
+        </p>
 
-<p>
-        Durante anos, o jovem Jigoro Kano se dedicou a fazer um estudo completo sobre as antigas formas de autodefesa e, procurando encontrar explicações científicas aos golpes, baseadas em leis de dinâmica, ação e reação, selecionou e classificou as melhores técnicas dos vários sistemas de Ju-jutsu em um novo estilo chamado de Judô, ou "caminho suave" - Ju (suave) e Do (caminho ou via).
+        <h3>Criação do Judô e o Instituto Kodokan</h3>
 
-        Em 1882, o mestre Kano fundou o Instituto Kodokan. O termo Kodokan se decompõe em ko (palestra, estudo, método), do (caminho ou via) e kan (Instituto). Assim, significa "um lugar para estudar o caminho", o que explica muito bem a intenção do fundador da arte. Além de tornar o ensino da arte marcial como um esporte, Jigoro Kano desenvolveu uma linha filosófica baseada no conceito ippon-shobu (luta pelo ponto perfeito) e um código moral. Assim, ele pretendeu que a prática do Judô fortalecesse o físico, a mente e o espírito de forma integrada.
-        
-        Com seu trabalho, Jigoro Kano conseguiu criar uma modalidade que não se restringe a homens com vigor físico, se estendendo a mulheres, crianças e idosos, de qualquer altura e peso.
-</p>
+        <p>
+            Durante anos, o jovem Jigoro Kano se dedicou a fazer um estudo completo sobre as antigas formas de autodefesa e, procurando encontrar explicações científicas aos golpes, baseadas em leis de dinâmica, ação e reação, selecionou e classificou as melhores técnicas dos vários sistemas de Ju-jutsu em um novo estilo chamado de Judô, ou "caminho suave" - Ju (suave) e Do (caminho ou via).
 
-<h3>Código Moral </h3>
-    <p>
-            Visando fortalecer o caráter filosófico da prática do judô e fazer com que os praticantes do judô crescessem como pessoas, o mestre Jigoro Kano idealizou um código moral baseado em oito princípios básicos:
+            Em 1882, o mestre Kano fundou o Instituto Kodokan. O termo Kodokan se decompõe em ko (palestra, estudo, método), do (caminho ou via) e kan (Instituto). Assim, significa "um lugar para estudar o caminho", o que explica muito bem a intenção do fundador da arte. Além de tornar o ensino da arte marcial como um esporte, Jigoro Kano desenvolveu uma linha filosófica baseada no conceito ippon-shobu (luta pelo ponto perfeito) e um código moral. Assim, ele pretendeu que a prática do Judô fortalecesse o físico, a mente e o espírito de forma integrada.
+  
+            Com seu trabalho, Jigoro Kano conseguiu criar uma modalidade que não se restringe a homens com vigor físico, se estendendo a mulheres, crianças e idosos, de qualquer altura e peso.
+        </p>
+
+        <h3>Código Moral </h3>
+        <p>
+            Visando fortalecer o caráter filosófico da prática do judô e fazer com que os praticantes do judô crescessem como pessoas, o mestre Jigoro Kano idealizou um código     moral baseado em oito princípios básicos:
 
             - Cortesia, para ser educado no trato com os outros;
             - Coragem, para enfrentar as dificuldades com bravura;
@@ -27,6 +36,11 @@
             - Respeito, para conviver harmoniosamente com os outros;
             - Autocontrole, para estar no comando das suas emoções;
             - Amizade, para ser um bom companheiro e amigo.
-    </p>
+        </p>
+        </article>
+    <div class="stopfloat"></div>
 </div>
+    <br>
+    <hr>
+<br>
 {% endblock %}

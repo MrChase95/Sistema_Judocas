@@ -1,0 +1,54 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<div id=containeradm>
+    <div id="subtitle">
+<h2>Área do Administrador</h2>
+    </div>
+    <div id="imagem_aluno">
+        <img src="{% static 'home/Aluno.png' %}" alt="imagem aluno judoca" width=300 height=300>
+        <br><b>Aluno</b>
+        <br>
+        <br>
+        <nav id="menualuno">
+          <ul>
+                <li class="bt"><a href="#imagem_aluno"><img src="{% static 'home/soma.jpg' %}" width="50px" height="50px"><br>Cadastrar</a></li>
+                <li class="bt"><a href="#imagem_aluno"><img src="{% static 'home/Alterar.png' %}" width="50px" height="50px"><br>Buscar</a></li>
+                <li class="bt"><a href="#imagem_aluno"><img src="{% static 'home/busca.png' %}" width="50px" height="50px"><br>Alterar</a></li>
+            </ul>
+        </nav>
+        <br>
+        </div>
+    <br>
+        <div id="imagem_professor">
+            <img src="{% static 'home/Professor.png' %}" alt="imagem professor judoca" width=300 height=300>
+            <br><b>Professor</b>
+            <br>
+            <br>
+            <nav id="menuprofessor">
+            <ul>
+                <li class="bt"><a href="#imagem_professor"><img src="{% static 'home/soma.jpg' %}" width="50px" height="50px"><br>Cadastrar</a></li>
+                <li class="bt"><a href="#imagem_professor"><img src="{% static 'home/Alterar.png' %}" width="50px" height="50px"><br>Buscar</a></li>
+                <li class="bt"><a href="#imagem_professor"><img src="{% static 'home/busca.png' %}" width="50px" height="50px"><br>Alterar</a></li>
+            </ul>
+        </nav>
+        </div>
+    <div id="imagem_dojo">
+            <img src="{% static 'home/Dojo.png' %}" alt="imagem dojo" width=300 height=300>
+            <br><b>Dojo</b>
+            <br>
+            <br>
+            <nav id="menudojo">
+            <ul>
+                <li class="bt"><a href="#imagem_dojo"><img src="{% static 'home/soma.jpg' %}" width="50px" height="50px"><br>Cadastrar</a></li>
+                <li class="bt"><a href="#imagem_dojo"><img src="{% static 'home/Alterar.png' %}" width="50px" height="50px"><br>Buscar</a></li>
+                <li class="bt"><a href="#imagem_dojo"><img src="{% static 'home/busca.png' %}" width="50px" height="50px"><br>Alterar</a></li>
+            </ul>
+        </nav>
+        </div>
+
+    <div class="stopfloat"></div>
+</div>
+    <br>
+    <hr>
+<br>
+
+{% endblock %}
