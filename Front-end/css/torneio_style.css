@@ -1,0 +1,290 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+#banner {
+  text-align: center;
+  background-size: cover;
+  background-color: #708090;
+  color: #F5F5F5;
+  text-shadow: 1px 1px 5px black;
+}
+#menu {
+  background-color: #708090;
+  display: flex;
+  display: -webkit- flex;
+  justify-content: center;
+  justify-content: -webkit- center;
+  margin-bottom: 20px;
+    
+}
+#menu ul li {
+  list-style: none;
+  display: inline-block;
+  display: -webkit- inline-block;
+  padding: 0px 20px;
+  border-right: 1px solid black;
+   margin-top: 7px;
+
+}
+#menu ul .bt:hover{
+    opacity: 0.3;
+}
+#menu ul li a {
+  text-decoration: none;
+  color: #E8E8E8;
+  font-size: 15pt;
+  text-shadow: 1px 1px 5px black;
+  
+}
+
+.stopfloat{
+    clear: both;
+}
+
+.round {
+  float: left;
+}
+.round.r-of-8 {
+  
+}
+.round.r-of-4 {
+  margin-top: 25px;
+}
+.bracket-game {
+  max-width: 125px;
+  margin: 10px 0;
+}
+
+.bracket-game-2{
+    margin-top: 20px;
+}
+
+.bracket-game-3{
+    margin-top: 18px;
+}
+
+.bracket-game-4{
+    margin-top: 18px;
+}
+
+.bracket-game-8{
+    margin-top: 10px
+}
+.bracket-game-9{
+    margin-top: 81px;
+    
+}
+
+
+.bracket-game-12{
+    margin-top: 95px;
+    margin-left: 50px;
+}
+
+
+
+.player {
+  min-width: 100px;
+  border: 1px solid #AAA;
+  padding-left: 12px;
+}
+.player.top {
+  border-radius: 3px 3px 0 0;
+}
+.player.bot {
+  border-radius: 0 0 3px 3px;
+}
+
+.player.win {
+  background-color: #B8F2B8;
+}
+.player.loss {
+  background-color: #F2B8B8;
+}
+.connectors {
+  float: left;
+  min-width: 35px;
+}
+.connectors.r-of-4 .top-line {
+  position: relative;
+  top: 30px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-4 .top-line2 {
+  position: relative;
+  top: 152px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-4 .top-line3 {
+  position: relative;
+  top: 270px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-4 .top-line4 {
+  position: relative;
+  top: 375px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+.connectors.r-of-4 .bottom-line {
+  position: relative;
+  top: 87px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-4 .bottom-line2 {
+  position: relative;
+  top: 210px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+
+
+.connectors.r-of-4 .vert-line {
+  position: relative;
+  top: 22px;
+  left: -16px;
+  height: 63px;
+  border-right: 2px solid #AAA;
+}
+
+.connectors.r-of-4 .vert-line2 {
+  position: relative;
+  top: 82px;
+  left: -16px;
+  height: 65px;
+  border-right: 2px solid #AAA;
+}
+
+
+
+.connectors.r-of-4 .next-line {
+  position: relative;
+  top: 45px;
+  left: 17px;
+  width: 18px;
+  border: 1px solid #AAA;
+}
+
+.connectors.r-of-4 .next-line2 {
+  position: relative;
+  top: -82px;
+  left: 17px;
+  width: 19px;
+  border: 1px solid #AAA;
+}
+
+
+.connectors.r-of-2 .top-line5{
+  position: relative;
+  top: 62px;
+  left: -151px;
+  bottom: 120px;
+  width: 17px;
+  border: 1px solid #AAA;    
+}
+
+.connectors.r-of-2 .top-line6{
+  position: relative;
+  top: 289px;
+  left: -150px;
+  bottom: 120px;
+  width: 17px;
+  border: 1px solid #AAA;    
+}
+
+.connectors.r-of-2 .bottom-line5 {
+  position: relative;
+  top: 178px;
+  left: -150px; 
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+
+
+.connectors.r-of-2 .vert-line5 {
+  position: relative;
+  top: 58px;
+  left: -167px;
+  height: 120px;
+  border-right: 2px solid #AAA;
+}
+
+
+.connectors.r-of-2 .next-line5 {
+  position: relative;
+  top: -8px;
+  left: -133px;
+  width: 33px;
+  border: 1px solid #AAA;
+}
+
+
+
+
+.champion{
+    position: relative;
+    top: 10px;
+    left: -150px;
+    font-size: 50px;
+   
+}
+
+#trofeu {
+    width: 10%;
+    position: relative;
+    top: -120px;
+    left: 12px
+}
+
+.clear {
+  clear: both;
+}
+
+.torneio-container{
+    text-align: center;
+}
+
+.torneio{
+    
+    position: relative;
+    left: 250px;
+    
+}
+
+
+#footer {
+  background-color: #708090;
+}
+
+#footer p {
+  color:#F5F5F5;
+  font-size: 11pt;
+  text-align: center;
+}
+.fb {
+    float:left;
+    opacity: 1;
+}
+.insta{
+    float: right;
+    
+    opacity: 1;
+}
+.fb:hover{
+    opacity: 0.5;
+}
+.insta:hover{
+    opacity: 0.5;
+}
