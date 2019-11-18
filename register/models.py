@@ -40,6 +40,8 @@ class User(AbstractUser):
     rg = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+    is_associate_card_expired = models.BooleanField(default=True)
 
     def __str__(self):
         return self.first_name
@@ -73,7 +75,6 @@ class UserProfile(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -100,11 +101,11 @@ class Class(models.Model):
     """
         Relação entre usuários de Perfil professor e usuarios de Perfil Estudante
     """
-    teacher = models.ForeignKey(UserProfile, on_delete=models.CASCADE, db_column='teacher_id',
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE, db_column='teacher_id',
                                 related_name="%(app_label)s_%(class)s_teacher",
                                 related_query_name="%(app_label)s_%(class)ss_teacher",
                                 )
-    student = models.ForeignKey(UserProfile, on_delete=models.CASCADE, db_column='student_id',
+    student = models.ForeignKey(User, on_delete=models.CASCADE, db_column='student_id',
                                 related_name="%(app_label)s_%(class)s_student",
                                 related_query_name="%(app_label)s_%(class)ss_student",
                                 )
@@ -187,6 +188,7 @@ class Tournament(models.Model):
     name = models.CharField(max_length=255, db_column='tournament_name')
     initial_date = models.DateField()
     end_date = models.DateField()
+    is_active = models.BooleanField(default=True)
 
 
 class TournamentProfiles(models.Model):
@@ -279,15 +281,15 @@ class Knockout(models.Model):
     is_initial_match = models.BooleanField(default=True)
     date = models.DateField()
     time = models.TimeField()
-    competitor_one = models.ForeignKey(Competitor, on_delete=models.CASCADE,
+    competitor_one = models.ForeignKey(User, on_delete=models.CASCADE,
                                        related_name="%(app_label)s_%(class)s_competitor_one",
                                        related_query_name="%(app_label)s_%(class)ss_competitor_one")
-    competitor_two = models.ForeignKey(Competitor, on_delete=models.CASCADE,
+    competitor_two = models.ForeignKey(User, on_delete=models.CASCADE,
                                        related_name="%(app_label)s_%(class)s_competitor_two",
                                        related_query_name="%(app_label)s_%(class)ss_competitor_two")
-    winner = models.ForeignKey(Competitor, on_delete=models.CASCADE,
+    winner = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name="%(app_label)s_%(class)ss_winner",
                                related_query_name="%(app_label)s_%(class)ss_winner")
-    referee = models.ForeignKey(Referee, on_delete=models.CASCADE,
+    referee = models.ForeignKey(User, on_delete=models.CASCADE,
                                 related_name="%(app_label)s_%(class)ss_referee",
                                 related_query_name="%(app_label)s_%(class)ss_referee")

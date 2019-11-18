@@ -4,16 +4,22 @@ from rest_framework import serializers
 
 from .models import (Student, User, Teacher, UserProfile, Class,
                      Tournament, Participants, Competitor, Referee
-, Knockout)
+, Knockout, Profile, Category, Dojo, TournamentProfiles)
 
 
 class StudentSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(slug_field='first_name', read_only=True)
+    user_id = serializers.IntegerField()
+
     class Meta:
         model = Student
         fields = '__all__'
 
 
 class TeacherSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(slug_field='first_name', read_only=True)
+    user_id = serializers.IntegerField()
+
     class Meta:
         model = Teacher
         fields = '__all__'
@@ -25,13 +31,27 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+
 class UserSerializer(serializers.ModelSerializer):
+    url = serializers.CharField(source='get_absolute_url', read_only=True)
+
     class Meta:
         model = User
         fields = '__all__'
 
-    def create(self, validated_data):
-        return self.Meta.model.objects.create_user(**validated_data)
+    # def create(self, validated_data):
+    #     return self.Meta.model.objects.create_user(**validated_data)
 
     def validate_cpf(self, value):
         digits_weight: List[List[int]] = [
@@ -96,12 +116,18 @@ class ParticipantsSerializer(serializers.ModelSerializer):
 
 
 class CompetitorSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(slug_field='first_name', read_only=True)
+    user_id = serializers.IntegerField()
+
     class Meta:
         model = Competitor
         fields = '__all__'
 
 
 class RefereeSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(slug_field='first_name', read_only=True)
+    user_id = serializers.IntegerField()
+
     class Meta:
         model = Referee
         fields = '__all__'
@@ -110,4 +136,16 @@ class RefereeSerializer(serializers.ModelSerializer):
 class KnockoutSerializer(serializers.ModelSerializer):
     class Meta:
         model = Knockout
+        fields = '__all__'
+
+
+class DojoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dojo
+        fields = '__all__'
+
+
+class TournamentProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TournamentProfiles
         fields = '__all__'

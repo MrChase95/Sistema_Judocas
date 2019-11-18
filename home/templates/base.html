@@ -8,17 +8,23 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="{% static 'home/newstyle.css' %}">
+      <link rel="stylesheet" href="{% static 'Lib/css/dx.common.css' %}">
+      <link rel="stylesheet" href="{% static 'Lib/css/dx.light.css' %}">
+      <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.1.0.min.js"></script>
+      <script src="{% static 'Lib/js/dx.all.js' %}"></script>
+      <script src="{% static 'Lib/js/dx.aspnet.mvc.js' %}"></script>
+
   </head>
   <body>
     <header id="banner">
       <br>
       <h1>Sistema Judocas</h1>
+        <div id="sub_menu"></div>
       <nav id="menu">
           <ul>
               <li class="bt"><a href="{% url 'home' %}">Home <br><img src="{% static 'home/home.png' %}" width="30px" height="30px"></a></li>
               <li class="bt"><a href="#">Torneio<br><img src="{% static 'home/trophy.png'%}" width="30px" height="30px"></a></li>
               <li class="bt"><a href="{% url 'news-list' %}">Noticias<br><img src="{% static 'home/newspaper.png' %}" width="30px" height="30px"></a></li>
-              <li class="bt"><a href="{% url 'admin' %}">Admin.<br> <img src="{% static 'home/settings.png' %}" width="30px" height="30px"></a></li>
               <li class="bt"><a href="{% url 'login_screen' %}">Login<br><img src="{% static 'home/enter.png' %}" width="30px" height="30px"></a></li>
             </ul>
       </nav>
@@ -44,4 +50,87 @@
 
 
   </body>
+  <script>
+      let menu_data = [
+          {
+              id: '1',
+              name: 'Admin',
+              icon: "menu",
+              items: [
+                  {
+                      id: '1_1',
+                      name: "User Control",
+                      icon: "user",
+                      url: "{% url 'user_views' %}"
+                  },
+                  {
+                      id: '1_2',
+                      name: "Profile Control",
+                      icon: "group",
+                      url: "{% url 'user_profile_views' %}"
+                  },
+                  {
+                      id: '1_3',
+                      name: "Dojo Control",
+                      icon: "home",
+                      url: "{% url 'dojo_views' %}"
+                  },
+                  {
+                      id: '1_4',
+                      name: "Class Control",
+                      icon: "contentlayout",
+                      url: "{% url 'class_views' %}"
+                  },
+                  {
+                      id: '1_5',
+                      name: "Tournament Control",
+                      icon: "hierarchy",
+                      url: "{% url 'tournament_views' %}"
+                  },
+                  {
+                      id: '1_6',
+                      name: "Participants Control",
+                      icon: "group",
+                      url: "{% url 'participants_views' %}"
+                  },
+                  {
+                      id: '1_7',
+                      name: "Knockout Control",
+                      icon: "runner",
+                      url: "{% url 'knockout_views' %}"
+                  },
+              ]
+          }
+
+      ];
+
+      $(() => {
+          let menu = $('#sub_menu').dxMenu({
+              items: menu_data,
+              submenuDirection: "auto",
+              hideSubmenuOnMouseLeave: true,
+              cssClass: "bt",
+              showFirstSubmenuMode: {
+                  name: "onHover",
+                  delay: {
+                      hide: 300,
+                      show: 50
+                  },
+              },
+              showSubmenuMode: 'onHover',
+              itemsExpr: "items",
+              displayExpr: 'name',
+              onItemClick: (item) => {
+                  if (item.itemData.url) {
+                      window.location.assign(item.itemData.url);
+                  }
+              }
+          });
+      })
+  </script>
 </html>
+
+
+
+{% block scripts %}
+{% endblock %}

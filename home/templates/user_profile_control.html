@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+{% load rest_framework %}
+{% block content %}
+    <div class="container-fluid">
+        <div id="grid"></div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+    <script>
+        let dataUsers = new DevExpress.data.CustomStore(
+            {
+                load: (loadOptions) => {
+                    var deferred = $.Deferred();
+                    $.ajax({
+                        url: "{% url 'user_list_api' %}",
+                        dataType: "json",
+                        success: function (result) {
+                            deferred.resolve(result);
+                        },
+                        error: function () {
+                            deferred.reject("Data Loading Error");
+                        },
+                        timeout: 5000
+                    });
+
+                    return deferred.promise();
+                },
+                byKey: (key) => {
+                    var deferred = $.Deferred();
+                    $.ajax({
+                        url: "{% url 'user_list_api' %}" + key + "/",
+                        dataType: "json",
+                        success: function (result) {
+                            deferred.resolve(result);
+                        },
+                        error: function () {
+                            deferred.reject("Data Loading Error");
+                        },
+                        timeout: 5000
+                    });
+
+                    return deferred.promise();
+                },
+            }
+        );
+
+        let dataUsersProfile = new DevExpress.data.CustomStore({
+            load: (loadOptions) => {
+                var deferred = $.Deferred();
+                $.ajax({
+                    url: "{% url 'userprofile_list_api' %}",
+                    dataType: "json",
+                    success: function (result) {
+                        deferred.resolve(result);
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 5000
+                });
+
+                return deferred.promise();
+            },
+            insert: (values) => {
+                var deferred = $.Deferred();
+                $.ajax({
+                    url: "{% url 'userprofile_list_api' %}",
+                    dataType: "json",
+                    data: values,
+                    type: 'POST',
+                    success: function (result) {
+                        deferred.resolve(result);
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 5000
+                });
+
+                return deferred.promise();
+            },
+            update: (oldValues, newValues) => {
+
+                console.log(newValues, oldValues);
+                var deferred = $.Deferred();
+                $.ajax({
+                    url: "{% url 'userprofile_list_api' %}" + oldValues.id + "/",
+                    dataType: "json",
+                    data: newValues,
+                    type: 'PATCH',
+                    success: function (result) {
+                        deferred.resolve(result);
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 5000
+                });
+
+                return deferred.promise();
+            },
+            remove: (values) => {
+
+                {#console.log(newValues, oldValues);#}
+                var deferred = $.Deferred();
+                $.ajax({
+                    url: "{% url 'userprofile_list_api' %}" + values.id + "/",
+                    dataType: "json",
+                    data: values,
+                    type: 'DELETE',
+                    success: function (result) {
+                        deferred.resolve(result);
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 5000
+                });
+
+                return deferred.promise();
+            },
+        });
+
+        $(() => {
+            let grid = $('#grid').dxDataGrid({
+                dataSource: dataUsersProfile,
+                editing: {
+                    mode: "form",
+                    allowAdding: true,
+                    allowDeleting: true,
+                    allowUpdating: true
+                },
+                columnAutoWidth: false,
+                columns: [
+                    {
+                        dataField: "id",
+                        allowEditing: false
+                    },
+                    {
+                        dataField: "user",
+                        caption: 'Usuario',
+                        lookup: {
+                            dataSource: dataUsers,
+                            valueExpr: 'id',
+                            displayExpr: 'first_name'
+                        }
+                    },
+                    {
+                        dataField: "profile",
+                        caption: 'Perfil',
+                        lookup: {
+                            dataSource: new DevExpress.data.CustomStore({
+                                load: () => {
+                                    var deferred = $.Deferred();
+                                    $.ajax({
+                                        url: "{%  url 'profile_list_api' %}",
+                                        dataType: "json",
+                                        success: function (result) {
+                                            deferred.resolve(result);
+                                        },
+                                        error: function () {
+                                            deferred.reject("Data Loading Error");
+                                        },
+                                        timeout: 5000
+                                    });
+
+                                    return deferred.promise();
+                                },
+                                byKey: (key) => {
+                                    var deferred = $.Deferred();
+                                    $.ajax({
+                                        url: "{%  url 'profile_list_api' %}" + key + "/",
+                                        dataType: "json",
+                                        success: function (result) {
+                                            deferred.resolve(result);
+                                        },
+                                        error: function () {
+                                            deferred.reject("Data Loading Error");
+                                        },
+                                        timeout: 5000
+                                    });
+
+                                    return deferred.promise();
+                                }
+                            }),
+                            valueExpr: 'id',
+                            displayExpr: 'name'
+                        }
+                    },
+                ]
+            });
+        });
+    </script>
+
+{% endblock %}

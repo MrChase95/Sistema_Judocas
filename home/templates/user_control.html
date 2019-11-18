@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load rest_framework %}
+{% block content %}
+    <div class="container-fluid">
+        {#       <form class="form-horizontal">#}
+        {#           <div class="col-xs-6 form-group">#}
+        <div id="grid"></div>
+        {#           </div>#}
+        {#       </form>#}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+    <script>
+        let data = new DevExpress.data.CustomStore(
+            {
+                load: (loadOptions) => {
+                    var deferred = $.Deferred();
+                    $.ajax({
+                        url: "{% url 'user_list_api' %}",
+                        dataType: "json",
+                        success: function (result) {
+                            deferred.resolve(result);
+                        },
+                        error: function () {
+                            deferred.reject("Data Loading Error");
+                        },
+                        timeout: 5000
+                    });
+
+                    return deferred.promise();
+                },
+                update: (oldValues, newValues) => {
+
+                    console.log(newValues, oldValues);
+                    var deferred = $.Deferred();
+                    $.ajax({
+                        url: "{% url 'user_list_api' %}" + oldValues.id + "/",
+                        dataType: "json",
+                        data: newValues,
+                        type: 'PATCH',
+                        success: function (result) {
+                            deferred.resolve(result);
+                        },
+                        error: function () {
+                            deferred.reject("Data Loading Error");
+                        },
+                        timeout: 5000
+                    });
+
+                    return deferred.promise();
+                },
+                insert: (values) => {
+                    var deferred = $.Deferred();
+                    $.ajax({
+                        url: "{% url 'user_list_api' %}",
+                        dataType: "json",
+                        data: values,
+                        type: 'POST',
+                        success: function (result) {
+                            deferred.resolve(result);
+                        },
+                        error: function () {
+                            deferred.reject("Data Loading Error");
+                        },
+                        timeout: 5000
+                    });
+
+                    return deferred.promise();
+                }
+            }
+        );
+
+        $(() => {
+            let grid = $('#grid').dxDataGrid({
+                dataSource: data,
+                editing: {
+                    mode: "form",
+                    allowAdding: true,
+                    allowDeleting: false,
+                    allowUpdating: true
+                },
+                columnAutoWidth: true,
+                columns: [
+                    {
+                        dataField: "id",
+                        allowEditing: false
+                    },
+                    {
+                        dataField: "first_name",
+                        caption: 'Primeiro Nome'
+                    },
+                    {
+                        dataField: "last_name",
+                        caption: 'Sobrenome'
+                    },
+                    {
+                        dataField: "username",
+                        caption: "Nome de Usuário"
+                    },
+                    {
+                        dataField: "cbj_id",
+                        caption: 'CBJ ID'
+                    },
+                    {
+                        dataField: "cpf",
+                        caption: 'CPF',
+                    },
+                    {
+                        dataField: "rg",
+                        caption: 'RG',
+                    },
+                    {
+                        dataField: "email",
+                        caption: 'Email'
+                    },
+                    {
+                        dataField: "primary_phone",
+                        caption: 'Telefone'
+                    },
+                    {
+                        dataField: "alternative_phone",
+                        caption: "Telefone Secundário"
+                    },
+                    {
+                        dataField: "password",
+                        caption: "Senha"
+                    },
+                    {
+                        dataField: 'category',
+                        caption: 'Faixa',
+                        lookup: {
+                            dataSource: new DevExpress.data.CustomStore({
+                                load: () => {
+                                    var deferred = $.Deferred();
+                                    $.ajax({
+                                        url: "{%  url 'category_list_api' %}",
+                                        dataType: "json",
+                                        success: function (result) {
+                                            deferred.resolve(result);
+                                        },
+                                        error: function () {
+                                            deferred.reject("Data Loading Error");
+                                        },
+                                        timeout: 5000
+                                    });
+
+                                    return deferred.promise();
+                                },
+                                byKey: (key) => {
+                                    var deferred = $.Deferred();
+                                    $.ajax({
+                                        url: "{%  url 'category_list_api' %}" + key + "/",
+                                        dataType: "json",
+                                        success: function (result) {
+                                            deferred.resolve(result);
+                                        },
+                                        error: function () {
+                                            deferred.reject("Data Loading Error");
+                                        },
+                                        timeout: 5000
+                                    });
+
+                                    return deferred.promise();
+                                }
+                            }),
+                            valueExpr: 'id',
+                            displayExpr: 'name'
+                        }
+                    },
+                    {
+                        dataField: "is_active",
+                        caption: "Ativo",
+                        dataType: "text",
+                        trueText: "Sim",
+                        falseText: "Não",
+                        formItem: {
+                            editorType: "dxCheckBox"
+                        },
+                        calculateDisplayValue: (value) => {
+                            console.log(value);
+                            return value.is_active ? "Sim" : "Não"
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+
+{% endblock %}

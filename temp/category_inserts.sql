@@ -16,3 +16,5 @@ INSERT INTO tb_register_category_catalog ( category_name, category_order, catego
 INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'VERMELHA8DAN', 16, '#FF0000', 'Faixa Vermelha 8º Dan');
 INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'VERMELHA9DAN', 17, '#FF0000', 'Faixa Vermelha 9º Dan');
 INSERT INTO tb_register_category_catalog ( category_name, category_order, category_color, category_description) VALUES ( 'VERMELHA10DAN', 18, '#FF0000', 'Faixa Vermelha 10º Dan');
+INSERT INTO register_tournamentprofiles (id, name) VALUES (1, 'Competidor');
+INSERT INTO register_tournamentprofiles (id, name) VALUES (2, 'Arbitro');
