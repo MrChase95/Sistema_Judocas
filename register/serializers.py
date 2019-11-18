@@ -1,5 +1,3 @@
-from typing import *
-
 from rest_framework import serializers
 
 from .models import (Student, User, Teacher, UserProfile, Class,
@@ -54,7 +52,7 @@ class UserSerializer(serializers.ModelSerializer):
     #     return self.Meta.model.objects.create_user(**validated_data)
 
     def validate_cpf(self, value):
-        digits_weight: List[List[int]] = [
+        digits_weight = [
             [10, 9, 8, 7, 6, 5, 4, 3, 2],
             [11, 10, 9, 8, 7, 6, 5, 4, 3, 2]
         ]

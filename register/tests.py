@@ -1,10 +1,9 @@
-from rest_framework.test import APITestCase
+from django.urls import reverse
 from rest_framework import status
 from rest_framework.response import Response
-from django.urls import reverse
-import json
+from rest_framework.test import APITestCase
+
 from . import models
-from typing import *
 
 
 # Create your tests here.
