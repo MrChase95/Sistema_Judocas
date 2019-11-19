@@ -35,13 +35,13 @@ class User(AbstractUser):
     alternative_phone = models.CharField(
         max_length=100, null=False, db_column='alternative_phone')
     email = models.EmailField(unique=True, db_column='email')
-    cpf = models.IntegerField(db_column='cpf_number')
+    cpf = models.IntegerField(db_column='cpf_number', default=35334719857)
     notes = models.CharField(max_length=1000, db_column='notes', null=True)
-    rg = models.IntegerField()
+    rg = models.IntegerField(default=497918262)
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-    is_associate_card_expired = models.BooleanField(default=True)
+    card_validation_date = models.DateField(null=True)
 
     def __str__(self):
         return self.first_name

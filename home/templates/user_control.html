@@ -84,6 +84,11 @@
                 searchPanel: {
                     visible: true,
                 },
+                width: '100%',
+                scrolling: {
+                    enabled: false
+                },
+                wordWrapEnabled: true,
                 columnAutoWidth: true,
                 columns: [
                     {
@@ -101,6 +106,42 @@
                     {
                         dataField: "username",
                         caption: "Nome de Usuário"
+                    },
+                    {
+                        dataField: "card_validation_date",
+                        caption: "Data de Vencimento",
+                        dataType: 'date',
+                        {#editorType: 'dxDateBox',#}
+                        calculateDisplayValue: (value) => {
+                            console.log(value);
+                            return Date.parse(value.card_validation_date) < Date.now() ? 'Vencida' : value.card_validation_date;
+                        },
+                        editorOptions: {
+                            elementAttr: {
+                                id: 'card_validation_date_id'
+                            },
+                            dateSerializationFormat: "yyyy-MM-dd",
+                            openOnFieldClick: true,
+                            buttons: [
+                                {
+                                    location: 'before',
+                                    name: 'Renovar',
+                                    options: {
+                                        text: 'Renovar',
+                                        onClick: (e) => {
+                                            let instance = $('#card_validation_date_id').dxDateBox('instance');
+                                            let oldDate =  new Date();
+                                            instance.option('value', new Date(
+                                                oldDate.getFullYear() + 1,
+                                                oldDate.getMonth(),
+                                                oldDate.getDay())
+                                            );
+                                            e.component.option('disabled', true);
+                                        }
+                                    }
+                                }
+                            ]
+                        }
                     },
                     {
                         dataField: "cbj_id",
@@ -128,7 +169,14 @@
                     },
                     {
                         dataField: "password",
-                        caption: "Senha"
+                        caption: "Senha",
+                        editorType: 'dxTextBox',
+                        editorOptions: {
+                            mode: 'password'
+                        },
+                        calculateDisplayValue: (value) => {
+                            return '*****'
+                        }
                     },
                     {
                         dataField: 'category',

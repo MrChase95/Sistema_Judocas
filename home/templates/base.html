@@ -108,6 +108,7 @@
       ];
 
       $(() => {
+          {#$('body').width = window.innerWidth;#}
           let menu = $('#sub_menu').dxMenu({
               items: menu_data,
               submenuDirection: "auto",
@@ -120,6 +121,7 @@
                       show: 50
                   },
               },
+              visible: {% if user.is_authenticated %} true {% else %} false {% endif %},
               showSubmenuMode: 'onHover',
               itemsExpr: "items",
               displayExpr: 'name',

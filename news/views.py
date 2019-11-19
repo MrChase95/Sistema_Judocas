@@ -1,19 +1,21 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import News
-from .forms import NewsForm
 from django.utils import timezone
+
+from .forms import NewsForm
+from .models import News
+
 
 # Create your views here.
 
 
 def NewsView(request, *args, **kwargs):
     news = News.objects.all()
-    return render(request, 'news.html', {'news': news})
+    return render(request, 'news.html', {'news': news, 'user': request.user})
 
 
 def News_DetailView(request, pk, *args, **kwargs):
     news = get_object_or_404(News, pk=pk)
-    return render(request, 'news_detail.html', {'news': news})
+    return render(request, 'news_detail.html', {'news': news, 'user': request.user})
 
 
 def News_NewView(request, *args, **kwargs):
@@ -26,7 +28,7 @@ def News_NewView(request, *args, **kwargs):
             return redirect('news-detail', pk=news.pk)
     else:
         form = NewsForm()
-    return render(request, 'news_edit.html', {'form': form})
+    return render(request, 'news_edit.html', {'form': form, 'user': request.user})
 
 
 def News_Edit(request, pk, *args, **kwargs):
@@ -41,4 +43,4 @@ def News_Edit(request, pk, *args, **kwargs):
             return redirect('news-detail', pk=news.pk)
     else:
         form = NewsForm(instance=news)
-    return render(request, 'news_edit.html', {'form': form})
+    return render(request, 'news_edit.html', {'form': form, 'user': request.user})
