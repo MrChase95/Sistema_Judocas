@@ -16,7 +16,7 @@
         let data = new DevExpress.data.CustomStore(
             {
                 load: (loadOptions) => {
-                    var deferred = $.Deferred();
+                    let deferred = $.Deferred();
                     $.ajax({
                         url: "{% url 'user_list_api' %}",
                         dataType: "json",
