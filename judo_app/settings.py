@@ -42,8 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'home',
     'register',
-    'news',
-    'codacy'
+    'news'
 ]
 
 MIDDLEWARE = [
