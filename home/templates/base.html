@@ -26,7 +26,7 @@
       <nav id="menu">
           <ul>
               <li class="bt"><a href="{% url 'home' %}">Home <br><img src="{% static 'home/home.png' %}" width="30px" height="30px"></a></li>
-              <li class="bt"><a href="#">Torneio<br><img src="{% static 'home/trophy.png'%}" width="30px" height="30px"></a></li>
+              <li class="bt"><a href="{% url 'tournament_views' %}">Torneio<br><img src="{% static 'home/trophy.png'%}" width="30px" height="30px"></a></li>
               <li class="bt"><a href="{% url 'news-list' %}">Noticias<br><img src="{% static 'home/newspaper.png' %}" width="30px" height="30px"></a></li>
               <li class="bt"><a href="{% url 'login_screen' %}">Login<br><img src="{% static 'home/enter.png' %}" width="30px" height="30px"></a></li>
             </ul>

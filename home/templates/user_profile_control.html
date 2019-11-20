@@ -70,6 +70,9 @@
                     dataType: "json",
                     data: values,
                     type: 'POST',
+                    headers: {
+                        "X-CSRFToken": '{{ csrf_token }}',
+                    },
                     success: function (result) {
                         deferred.resolve(result);
                     },
@@ -90,6 +93,9 @@
                     dataType: "json",
                     data: newValues,
                     type: 'PATCH',
+                    headers: {
+                        "X-CSRFToken": '{{ csrf_token }}',
+                    },
                     success: function (result) {
                         deferred.resolve(result);
                     },
@@ -110,6 +116,9 @@
                     dataType: "json",
                     data: values,
                     type: 'DELETE',
+                    headers: {
+                        "X-CSRFToken": '{{ csrf_token }}',
+                    },
                     success: function (result) {
                         deferred.resolve(result);
                     },
