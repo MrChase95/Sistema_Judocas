@@ -114,8 +114,7 @@ class ParticipantsSerializer(serializers.ModelSerializer):
 
 
 class CompetitorSerializer(serializers.ModelSerializer):
-    user = serializers.SlugRelatedField(slug_field='first_name', read_only=True)
-    user_id = serializers.IntegerField()
+    full_name = serializers.CharField()
 
     class Meta:
         model = Competitor
@@ -123,8 +122,7 @@ class CompetitorSerializer(serializers.ModelSerializer):
 
 
 class RefereeSerializer(serializers.ModelSerializer):
-    user = serializers.SlugRelatedField(slug_field='first_name', read_only=True)
-    user_id = serializers.IntegerField()
+    full_name = serializers.CharField()
 
     class Meta:
         model = Referee

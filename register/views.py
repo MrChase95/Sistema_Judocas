@@ -187,14 +187,14 @@ class KnockoutListAPI(generics.ListCreateAPIView):
 
 
 class CompetitorListAPI(generics.ListCreateAPIView):
-    serializer_class = UserProfileSerializer
+    serializer_class = CompetitorSerializer
     queryset = CompetitorSerializer.Meta.model.objects.all()
     # authentication_classes = [SessionAuthentication, BasicAuthentication]
     # permission_classes = [IsAuthenticated]
 
 
 class RefereeListAPI(generics.ListCreateAPIView):
-    serializer_class = UserProfileSerializer
+    serializer_class = RefereeSerializer
     queryset = RefereeSerializer.Meta.model.objects.all()
     # authentication_classes = [SessionAuthentication, BasicAuthentication]
     # permission_classes = [IsAuthenticated]

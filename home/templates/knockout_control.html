@@ -258,6 +258,7 @@
                     },
                     {
                         dataField: "is_initial_match",
+                        caption: 'Partida Inicial?',
                         dataType: "text",
                         trueText: "Sim",
                         falseText: "Não",
@@ -272,6 +273,7 @@
                     {
                         dataField: "date",
                         dataType: "date",
+                        caption: 'Data',
                         editorOptions: {
                             dateSerializationFormat: "yyyy-MM-dd"
                         }
@@ -279,6 +281,7 @@
                     {
                         dataField: "time",
                         dataType: "time",
+                        caption: 'Hora',
                         editorOptions: {
                             dateSerializationFormat: "HH:mm:ss"
                         }
@@ -289,7 +292,7 @@
                         lookup: {
                             dataSource: dataKnockout,
                             valueExpr: 'id',
-                            displayExpr: 'name'
+                            displayExpr: 'id'
                         }
                     },
                     {
@@ -314,36 +317,36 @@
                         dataField: "competitor_one",
                         caption: 'Competidor Um',
                         lookup: {
-                            dataSource: dataUsers,
-                            valueExpr: 'id',
-                            displayExpr: 'first_name'
+                            dataSource: dataCompetitors,
+                            valueExpr: 'user',
+                            displayExpr: 'full_name'
                         }
                     },
                     {
                         dataField: "competitor_two",
                         caption: 'Competidor Dois',
                         lookup: {
-                            dataSource: dataUsers,
-                            valueExpr: 'id',
-                            displayExpr: 'first_name'
+                            dataSource: dataCompetitors,
+                            valueExpr: 'user',
+                            displayExpr: 'full_name'
                         }
                     },
                     {
                         dataField: "winner",
                         caption: 'Vencedor',
                         lookup: {
-                            dataSource: dataUsers,
-                            valueExpr: 'id',
-                            displayExpr: 'first_name'
+                            dataSource: dataCompetitors,
+                            valueExpr: 'user',
+                            displayExpr: 'full_name'
                         }
                     },
                     {
                         dataField: "referee",
                         caption: 'Arbitro',
                         lookup: {
-                            dataSource: dataUsers,
-                            valueExpr: 'id',
-                            displayExpr: 'first_name'
+                            dataSource: dataReferees,
+                            valueExpr: 'user',
+                            displayExpr: 'full_name'
                         }
                     },
                 ]

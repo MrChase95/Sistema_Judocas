@@ -236,6 +236,10 @@ class Competitor(Participants):
 
     objects = CompetitorManager()
 
+    @property
+    def full_name(self):
+        return self.user.first_name
+
     class Meta:
         proxy = True
 
@@ -259,6 +263,10 @@ class Referee(Participants):
     """
 
     objects = RefereeManager()
+
+    @property
+    def full_name(self):
+        return self.user.first_name
 
     class Meta:
         proxy = True
