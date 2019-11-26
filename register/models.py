@@ -87,6 +87,8 @@ class UserProfile(models.Model):
 class Dojo(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, db_column='dojo_name')
+    address = models.CharField(max_length=100, db_column='address', null=True)
+    cnpj = models.CharField(max_length=100, db_column='cnpj', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
 
